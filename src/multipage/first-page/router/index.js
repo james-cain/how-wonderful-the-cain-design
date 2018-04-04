@@ -10,11 +10,11 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
-    hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index'),
+      component: () => import('@/multipage/first-page/views/dashboard/index'),
     }],
+    meta: { title: 'Dashboard' },
   }, {
     path: '/example',
     component: Layout,
@@ -23,11 +23,13 @@ export const constantRouterMap = [
     children: [{
       path: 'table',
       name: 'Table',
-      component: () => import('@/views/table/index'),
+      component: () => import('@/multipage/first-page/views/table/index'),
+      meta: { title: 'Table' },
     }, {
-      path: 'tree',
-      name: 'Tree',
-      component: () => import('@/views/tree/index'),
+      path: 'form',
+      name: 'Form',
+      component: () => import('@/multipage/first-page/views/form/index'),
+      meta: { title: 'Form' },
     }],
   },
 ];

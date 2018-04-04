@@ -24,3 +24,11 @@
   width: 100%;
   height: 100%;
 }
+
+.layout (@direction: row, @hLayout: flex-start, @vLayout: center, @wrap: wrap) {
+  display: flex;
+  direction: @direction;
+  justify-content: @hLayout;
+  align-items: @vLayout;
+  flex-wrap: @wrap;
+}
