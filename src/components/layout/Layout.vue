@@ -35,6 +35,9 @@ export default {
   height: 100%;
   width: 100%;
 }
+a {
+  text-decoration: none;
+}
 #app {
   // 主体区域
   .main-container {
@@ -99,7 +102,7 @@ export default {
           text-align: left;
           text-indent: 20px;
           top: 0px;
-          background-color: #1f2d3d!important;
+          background-color: #fff!important;
           opacity: 1;
         }
       }
@@ -127,9 +130,9 @@ export default {
   .nest-menu .el-submenu>.el-submenu__title,
   .el-submenu .el-menu-item {
     min-width: 180px!important;
-    background-color: #1f2d3d!important;
+    background-color: #fff!important;
     &:hover {
-      background-color: #001528!important;
+      background-color: rgb(204, 204, 204)!important;
     }
   }
   .el-menu--collapse .el-menu .el-submenu{

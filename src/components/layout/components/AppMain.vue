@@ -11,3 +11,9 @@ export default {
   name: 'AppMain',
 };
 </script>
+
+<style rel="stylesheet/less" lang="less">
+  .app-main {
+    padding: 20px;
+  }
+</style>

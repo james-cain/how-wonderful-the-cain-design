@@ -1,7 +1,7 @@
 <template>
   <scroll-bar>
       <el-menu mode="vertical" unique-opened :default-active="$route.path"
-        background-color="#304156" text-color="#fff" active-text-color="#409EFF">
+        background-color="#fff" text-color="rgb(72, 87, 106)" active-text-color="#20A0FF">
         <sidebar-item :routes="routes"></sidebar-item>
       </el-menu>
   </scroll-bar>
@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     routes() {
-      return this.$router.options.routes
+      return this.$router.options.routes;
     },
   },
 };

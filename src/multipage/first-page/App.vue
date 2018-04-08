@@ -58,24 +58,4 @@ export default {
   body {
     margin: 0;
   }
-  .child-container {
-    min-height: 680px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media (min-width: 1200px) {
-    .container, .child-container {
-      width: 1170px;
-    }
-  }
-  @media (min-width: 992px) and (max-width: 1199px) {
-    .container, .child-container {
-      width: 970px;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 991px) {
-    .container, .child-container {
-      width: 750px;
-    }
-  }
 </style>

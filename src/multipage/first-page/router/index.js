@@ -7,11 +7,16 @@ Vue.use(Router);
 export const constantRouterMap = [
   {
     path: '/',
+    redirect: '/dashboard/index',
+    hidden: true,
+  },
+  {
+    path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard',
     name: 'Dashboard',
     children: [{
-      path: 'dashboard',
+      path: 'index',
+      name: 'Dashboard',
       component: () => import('@/multipage/first-page/views/dashboard/index'),
       meta: { title: 'Dashboard' },
     }],

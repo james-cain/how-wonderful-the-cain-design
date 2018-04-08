@@ -2,7 +2,7 @@
   <div>
     <header>
       <div class="container">
-        <img :src="'/ui/static/' + address" alt="">
+        <img :src="'/static/' + address" alt="">
         <span>{{title}}</span>
         <ul class="nav-bar" v-show="showMenu">
           <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
@@ -17,7 +17,6 @@
         </ul>
         <ul class="nav-tool-bar">
           <li><i class="iconfont icon-user"></i>{{userName}}</li>
-          <li>修改密码</li>
           <li>退出</li>
         </ul>
       </div>
@@ -208,5 +207,10 @@ ul {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
   opacity: 0
+}
+@media (min-width: 1200px) {
+  .container, .child-container {
+    min-width: 1200px;
+  }
 }
 </style>

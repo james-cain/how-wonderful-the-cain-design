@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader } from 'element-ui';
+import { Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem } from 'element-ui';
 import App from './App';
 import router from './router';
 
@@ -26,6 +26,8 @@ Vue.component(Dialog.name, Dialog);
 Vue.component(Tree.name, Tree);
 Vue.component(InputNumber.name, InputNumber);
 Vue.component(Cascader.name, Cascader);
+Vue.component(Breadcrumb.name, Breadcrumb);
+Vue.component(BreadcrumbItem.name, BreadcrumbItem);
 Vue.use(Loading.directive);
 
 Vue.prototype.$loading = Loading.service;
