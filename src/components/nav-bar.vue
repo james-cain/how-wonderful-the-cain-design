@@ -57,26 +57,26 @@ export default {
     changeColorEnd(parentIndex, index) {
       this.menuList[parentIndex].subMenuList[index].isHover = false;
     },
+    /* eslint no-param-reassign: 0 */
     selectMenu(menu) {
       if (!menu.isSelected) {
-      //   if (!menu.isMenu) {
-      //     this.menuList.forEach((e) => {
-      //       e.isSelected = e.id === menu.id;
-      //       if (e.subMenuList && e.subMenuList.length !== 0) {
-      //         e.subMenuList.forEach((elm) => {
-      //           if (elm.isSelected) {
-      //             /* eslint no-param-reassign: 0 */
-      //             elm.isSelected = !elm.isSelected;
-      //           }
-      //         });
-      //       }
-      //     });
-      //     this.$router.push({ name: menu.path });
-      //   }
+        // if (!menu.isMenu) {
+        //   this.menuList.forEach((e) => {
+        //     e.isSelected = e.id === menu.id;
+        //     if (e.subMenuList && e.subMenuList.length !== 0) {
+        //       e.subMenuList.forEach((elm) => {
+        //         if (elm.isSelected) {
+        //           /* eslint no-param-reassign: 0 */
+        //           elm.isSelected = !elm.isSelected;
+        //         }
+        //       });
+        //     }
+        //   });
+        //   this.$router.push({ name: menu.path });
+        // }
         location.href = menu.url;
       }
     },
-    /* eslint no-param-reassign: 0 */
     selectSubMenu(parentIndex, subMenu) {
       if (!subMenu.isSelected) {
         this.menuList.forEach((e, index) => {
