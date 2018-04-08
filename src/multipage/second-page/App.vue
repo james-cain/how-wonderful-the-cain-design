@@ -18,15 +18,16 @@ export default {
       userName: '陈东军',
       menuList: [
         {
-          isSelected: true,
+          isSelected: false,
           name: '菜单一',
           id: 'id1',
+          url: 'first-page.html',
         },
         {
-          isSelected: false,
+          isSelected: true,
           name: '菜单二',
           id: 'id2',
-          url: 'second-page.html',
+          // path: 'demo2'
         },
       ],
     };
