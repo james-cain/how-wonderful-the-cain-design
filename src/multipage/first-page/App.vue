@@ -6,10 +6,11 @@
 </template>
 
 <script>
-import navBar from '@/components/nav-bar'
+import navBar from '@/components/nav-bar';
+
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
       isShow: true,
       address: 'title.png',
@@ -67,12 +68,12 @@ export default {
       width: 1170px;
     }
   }
-  @media (min-width: 992px and (max-width: 1199px)) {
+  @media (min-width: 992px) and (max-width: 1199px) {
     .container, .child-container {
       width: 970px;
     }
   }
-  @media (min-width: 768px and (max-width: 991px)) {
+  @media (min-width: 768px) and (max-width: 991px) {
     .container, .child-container {
       width: 750px;
     }

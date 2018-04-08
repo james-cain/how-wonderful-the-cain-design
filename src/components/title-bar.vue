@@ -6,9 +6,9 @@
 </template>
 
 <script>
-  export default {
-    props: ['titleName'],
-  };
+export default {
+  props: ['titleName'],
+};
 </script>
 
 <style scoped lang="less">

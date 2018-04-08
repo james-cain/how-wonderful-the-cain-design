@@ -99,7 +99,7 @@ export default {
   // components: {
   //   titleBar
   // },
-  data () {
+  data() {
     return {
       currentPage1: 1,
       options: [{
@@ -195,33 +195,33 @@ export default {
     };
   },
   computed: {
-    tableHeight () {
-      return this.tableData3.length > 10 ? 441 : (this.tableData3.length + 1) * 40 + 1;
+    tableHeight() {
+      return this.tableData3.length > 10 ? 441 : ((this.tableData3.length + 1) * 40) + 1;
     },
   },
   methods: {
-    toggleSelection (rows) {
+    toggleSelection(rows) {
       if (rows) {
-        rows.forEach(row => {
+        rows.forEach((row) => {
           this.$refs.multipleTable.toggleRowSelection(row);
         });
       } else {
         this.$refs.multipleTable.clearSelection();
       }
     },
-    handleSelectionChange (val) {
+    handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    handleClick () {
+    handleClick() {
 
     },
-    handleIconClick () {
+    handleIconClick() {
 
     },
-    handleSizeChange (val) {
+    handleSizeChange() {
       // console.log(`每页 ${val} 条`)
     },
-    handleCurrentChange (val) {
+    handleCurrentChange() {
       // console.log(`当前页: ${val}`)
     },
   },

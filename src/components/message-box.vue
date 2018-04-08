@@ -122,7 +122,7 @@ export default {
     },
   },
   methods: {
-    handleAction (action) {
+    handleAction(action) {
       this.$emit('callback', action);
     },
   },

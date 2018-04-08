@@ -5,7 +5,7 @@
         <img :src="'/ui/static/' + address" alt="">
         <span>{{title}}</span>
         <ul class="nav-bar" v-show="showMenu">
-          <li v-for="(item, index) in menuList" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
+          <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
             {{item.name}}
             <!-- <i class="iconfont icon-icon" :class="[item.isHover ? 'rot' : '']" v-show="item.isMenu"></i> -->
             <!-- <transition name="fade" key="item.id">
@@ -22,75 +22,75 @@
         </ul>
       </div>
     </header>
-    <div style="height: 68px;"></div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      showMenu: {
-        type: Boolean,
-        default: true
-      },
-      menuList: {
-        type: [Array, Object]
-      },
-      address: {
-        type: String
-      },
-      title: {
-        type: String
-      },
-      userName: {
-        type: String
+export default {
+  props: {
+    showMenu: {
+      type: Boolean,
+      default: true,
+    },
+    menuList: {
+      type: [Array, Object],
+    },
+    address: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+    userName: {
+      type: String,
+    },
+  },
+  methods: {
+    rotStart(index) {
+      this.menuList[index].isHover = true;
+    },
+    rotEnd(index) {
+      this.menuList[index].isHover = false;
+    },
+    changeColorStart(parentIndex, index) {
+      this.menuList[parentIndex].subMenuList[index].isHover = true;
+    },
+    changeColorEnd(parentIndex, index) {
+      this.menuList[parentIndex].subMenuList[index].isHover = false;
+    },
+    selectMenu(menu) {
+      if (!menu.isSelected) {
+        if (!menu.isMenu) {
+          this.menuList.forEach((e) => {
+            e.isSelected = e.id === menu.id;
+            if (e.subMenuList && e.subMenuList.length !== 0) {
+              e.subMenuList.forEach((elm) => {
+                if (elm.isSelected) {
+                  /* eslint no-param-reassign: 0 */
+                  elm.isSelected = !elm.isSelected;
+                }
+              });
+            }
+          });
+          this.$router.push({ name: menu.path });
+        }
       }
     },
-    methods: {
-      rotStart (index) {
-        this.menuList[index].isHover = true
-      },
-      rotEnd (index) {
-        this.menuList[index].isHover = false
-      },
-      changeColorStart (parentIndex, index) {
-        this.menuList[parentIndex].subMenuList[index].isHover = true
-      },
-      changeColorEnd (parentIndex, index) {
-        this.menuList[parentIndex].subMenuList[index].isHover = false
-      },
-      selectMenu (menu) {
-        if (!menu.isSelected) {
-          if (!menu.isMenu) {
-            this.menuList.forEach((e, index) => {
-              e.isSelected = e.id === menu.id
-              if (e.subMenuList && e.subMenuList.length !== 0) {
-                e.subMenuList.forEach((elm, i) => {
-                  if (elm.isSelected) {
-                    elm.isSelected = !elm.isSelected
-                  }
-                })
-              }
-            })
-            this.$router.push({name: menu.path})
+    selectSubMenu(parentIndex, subMenu) {
+      if (!subMenu.isSelected) {
+        this.menuList.forEach((e, index) => {
+          e.isSelected = parentIndex === index;
+          if (e.subMenuList && e.subMenuList.length !== 0) {
+            e.subMenuList.forEach((elm) => {
+              elm.isSelected = parentIndex === index && subMenu.id === elm.id;
+            });
           }
-        }
-      },
-      selectSubMenu (parentIndex, subMenu) {
-        if (!subMenu.isSelected) {
-          this.menuList.forEach((e, index) => {
-            e.isSelected = parentIndex === index
-            if (e.subMenuList && e.subMenuList.length !== 0) {
-              e.subMenuList.forEach((elm, i) => {
-                elm.isSelected = parentIndex === index && subMenu.id === elm.id
-              })
-            }
-          })
-          this.$router.push({name: subMenu.path})
-        }
+        });
+        this.$router.push({ name: subMenu.path });
       }
-    }
-  }
+    },
+  },
+};
 </script>
 
 <style>
@@ -102,7 +102,6 @@ header {
   left: 0;
   z-index: 1000;
   width: 100%;
-  margin-bottom: 20px;
 }
 ul {
   -webkit-padding-start: 0px;

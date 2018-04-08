@@ -13,13 +13,14 @@ export const constantRouterMap = [
     children: [{
       path: 'dashboard',
       component: () => import('@/multipage/first-page/views/dashboard/index'),
+      meta: { title: 'Dashboard' },
     }],
-    meta: { title: 'Dashboard' },
   }, {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
+    meta: { title: 'Example' },
     children: [{
       path: 'table',
       name: 'Table',

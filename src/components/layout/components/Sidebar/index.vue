@@ -1,6 +1,6 @@
 <template>
   <scroll-bar>
-      <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse"
+      <el-menu mode="vertical" unique-opened :default-active="$route.path"
         background-color="#304156" text-color="#fff" active-text-color="#409EFF">
         <sidebar-item :routes="routes"></sidebar-item>
       </el-menu>
@@ -10,11 +10,16 @@
 <script>
 import ScrollBar from '@/components/ScrollBar';
 import SidebarItem from './SidebarItem';
-import ScrollBar from '@/components/ScrollBar';
+
 export default {
   components: {
-      SidebarItem,
-      ScrollBar,
+    SidebarItem,
+    ScrollBar,
   },
-}
+  computed: {
+    routes() {
+      return this.$router.options.routes
+    },
+  },
+};
 </script>

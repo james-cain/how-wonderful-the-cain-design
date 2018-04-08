@@ -8,15 +8,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'dashboard',
-    data() {
-      return {
-        name: 'admin',
-        role: 'admin',
-      };
-    },
-  };
+export default {
+  name: 'dashboard',
+  data() {
+    return {
+      name: 'admin',
+      role: 'admin',
+    };
+  },
+};
 </script>
 
 <style rel="stylesheet/less" lang="less" scoped>

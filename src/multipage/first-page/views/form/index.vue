@@ -96,9 +96,10 @@
 <script>
 import titleBar from '@/components/title-bar';
 import messageBox from '@/components/message-box';
+
 export default {
   name: 'demo2',
-  data () {
+  data() {
     return {
       msgShow: false,
       msgShowCancelButton: true,
@@ -116,19 +117,19 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '请输入商品名称', trigger: 'blur' }
+          { required: true, message: '请输入商品名称', trigger: 'blur' },
         ],
         region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' }
+          { required: true, message: '请选择活动区域', trigger: 'change' },
         ],
         price: [
-          { required: true, message: '请输入商品价格', trigger: 'blur' }
+          { required: true, message: '请输入商品价格', trigger: 'blur' },
         ],
         repertory: [
-          { required: true, message: '请输入商品总库存', trigger: 'blur' }
+          { required: true, message: '请输入商品总库存', trigger: 'blur' },
         ],
         initRepertory: [
-          { required: true, message: '请输入商品初始库存', trigger: 'blur' }
+          { required: true, message: '请输入商品初始库存', trigger: 'blur' },
         ],
       },
     };
@@ -138,14 +139,14 @@ export default {
     messageBox,
   },
   methods: {
-    onSubmit () {
+    onSubmit() {
       // console.log('submit!')
     },
-    handleAction (action) {
-      this.msgShow = false
+    handleAction() {
+      this.msgShow = false;
     },
-    openEdit () {
-      this.msgShow = true
+    openEdit() {
+      this.msgShow = true;
     },
   },
 };
