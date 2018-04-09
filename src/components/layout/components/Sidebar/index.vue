@@ -1,7 +1,7 @@
 <template>
   <scroll-bar>
       <el-menu mode="vertical" unique-opened :default-active="$route.path"
-        background-color="#fff" text-color="rgb(72, 87, 106)" active-text-color="#20A0FF">
+        background-color="#263544" text-color="#646f7a" active-text-color="#fff">
         <sidebar-item :routes="routes"></sidebar-item>
       </el-menu>
   </scroll-bar>

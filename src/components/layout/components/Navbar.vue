@@ -33,8 +33,8 @@ export default {
 
 <style rel="stylesheet/less" lang="less" scoped>
 .navbar {
-  height: 50px;
-  line-height: 50px;
+  height: 44px;
+  line-height: 44px;
   border-radius: 0px !important;
 }
 </style>

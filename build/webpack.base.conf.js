@@ -24,7 +24,7 @@ const webpackBaseConf = {
   context: path.resolve(__dirname, '../'),
   entry: {
     vendor: ['vue'],
-    // app: './src/main.js'
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -93,5 +93,5 @@ const webpackBaseConf = {
   }
 }
 
-webpackBaseConf.entry = Object.assign(webpackBaseConf.entry, entries)
+// webpackBaseConf.entry = Object.assign(webpackBaseConf.entry, entries)
 module.exports = webpackBaseConf

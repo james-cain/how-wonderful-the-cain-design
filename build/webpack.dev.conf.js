@@ -53,11 +53,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: 'index.html',
-    //   template: 'index.html',
-    //   inject: true
-    // }),
+    new HtmlWebpackPlugin({
+      chunks: ['vendor', 'app'],
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -91,16 +92,16 @@ module.exports = new Promise((resolve, reject) => {
       }))
 
       // added for multipage
-      Object.keys(entries).forEach((entry) => {
-        devWebpackConfig.plugins.push(
-          new HtmlWebpackPlugin({
-            chunks: ['vendor', entry],
-            filename: entry + '.html',
-            template: 'index.html',
-            inject: true
-          })
-        )
-      })
+      // Object.keys(entries).forEach((entry) => {
+      //   devWebpackConfig.plugins.push(
+      //     new HtmlWebpackPlugin({
+      //       chunks: ['vendor', entry],
+      //       filename: entry + '.html',
+      //       template: 'index.html',
+      //       inject: true
+      //     })
+      //   )
+      // })
 
       resolve(devWebpackConfig)
     }

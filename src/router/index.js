@@ -7,12 +7,8 @@ Vue.use(Router);
 export const constantRouterMap = [
   {
     path: '/',
+    redirect: '/dashboard/index',
     hidden: true,
-    children: [{
-      path: 'firstPage',
-      component: Layout,
-      name: 'firstPage',
-    }],
   },
   {
     path: '/dashboard',
@@ -21,25 +17,25 @@ export const constantRouterMap = [
     children: [{
       path: 'index',
       name: 'Dashboard',
-      component: () => import('@/multipage/first-page/views/dashboard/index'),
-      meta: { title: 'Dashboard' },
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: 'Dashboard', icon: 'example' },
     }],
   }, {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example' },
+    meta: { title: 'Example', icon: 'example' },
     children: [{
       path: 'table',
       name: 'Table',
-      component: () => import('@/multipage/first-page/views/table/index'),
-      meta: { title: 'Table' },
+      component: () => import('@/views/table/index'),
+      meta: { title: 'Table', icon: 'table' },
     }, {
       path: 'form',
       name: 'Form',
-      component: () => import('@/multipage/first-page/views/form/index'),
-      meta: { title: 'Form' },
+      component: () => import('@/views/form/index'),
+      meta: { title: 'Form', icon: 'form' },
     }],
   },
 ];

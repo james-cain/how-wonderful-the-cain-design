@@ -129,7 +129,7 @@ ul {
 }
 .container > img {
   width: 165px;
-  height: 31px;
+  height: 48px;
   float: left;
 }
 .container > span {
