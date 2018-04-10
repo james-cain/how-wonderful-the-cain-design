@@ -34,6 +34,9 @@ export default {
   components: {
     navBar,
   },
+  mounted() {
+    this.$store.dispatch('GetInfo');
+  },
 };
 </script>
 
