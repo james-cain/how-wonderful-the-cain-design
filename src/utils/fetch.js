@@ -1,7 +1,8 @@
+import { Message } from 'element-ui';
 import axios from 'axios';
 import { getStorage } from './common';
-import { Message } from 'element-ui';
 
+/* eslint no-param-reassign: 0 */
 // 创建axios实例
 const service = axios.create({
   // baseURL: process.env.BASE_API, // api的base_url

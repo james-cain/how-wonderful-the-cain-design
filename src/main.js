@@ -3,6 +3,7 @@ import { Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, 
 import '@/icons'; // icon
 import App from './App';
 import router from './router';
+import store from './store';
 
 Vue.component(Input.name, Input);
 Vue.component(Button.name, Button);
@@ -44,6 +45,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 });
