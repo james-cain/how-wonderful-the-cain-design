@@ -27,7 +27,7 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'roles'
+      'roles',
     ]),
     routes() {
       return this.$router.options.routes;
