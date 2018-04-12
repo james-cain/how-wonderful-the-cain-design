@@ -2,6 +2,8 @@ import Vue from 'vue';
 import { Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem } from 'element-ui';
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import '@/icons'; // icon
+import '@/mock';
+import '@/permission';
 import App from './App';
 import router from './router';
 import store from './store';

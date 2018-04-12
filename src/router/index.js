@@ -11,6 +11,18 @@ export const constantRouterMap = [
     hidden: true,
   },
   {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/errorpage/404'),
+    hidden: true,
+  },
+  {
+    path: '/401',
+    name: '401',
+    component: () => import('@/views/errorpage/401'),
+    hidden: true,
+  },
+  {
     path: '/dashboard',
     component: Layout,
     name: 'Dashboard',
@@ -36,8 +48,21 @@ export const constantRouterMap = [
       name: 'Form',
       component: () => import('@/views/form/index'),
       meta: { title: 'Form', icon: 'form' },
+    }, {
+      path: 'SubExample',
+      component: () => import('@/components/layout/SubAppMain'),
+      redirect: '/example/SubExample/subtable',
+      name: 'SubExample',
+      meta: { title: 'SubExample', icon: 'example' },
+      children: [{
+        path: 'subtable',
+        name: 'SubTable',
+        component: () => import('@/views/table/index'),
+        meta: { title: 'SubTable' },
+      }],
     }],
   },
+  { name: 'except', path: '*', redirect: '/404', hidden: true },
 ];
 
 export default new Router({

@@ -2,7 +2,7 @@
   <div>
     <header>
       <div class="container">
-        <img :src="'/static/' + address" alt="">
+        <img :src="`./static/${address}`" alt="">
         <span>{{title}}</span>
         <ul class="nav-bar" v-show="showMenu">
           <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">

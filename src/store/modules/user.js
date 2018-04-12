@@ -3,22 +3,29 @@ import api from '@/api/api';
 /* eslint no-return-assign: 0 */
 const user = {
   state: {
-    roles: [],
+    roles: ['init'],
+    userInfo: {},
   },
   mutations: {
     SETROLES: (state, roles) => {
       state.roles = roles;
     },
+    SETUSERINFO: (state, info) => {
+      state.userInfo = info;
+    },
   },
   actions: {
     // 获取用户信息
-    GetInfo({ commit }) {
+    GetInfo({ commit }, params) {
       return new Promise((resolve, reject) => {
-        api.getInfo().then((response) => {
-          commit('SETROLES', response);
-          // commit('SET_NAME', data.name)
-          // commit('SET_AVATAR', data.avatar)
-          resolve(response);
+        api.getInfo(params).then((data) => {
+          const roles = data.role;
+          roles.push('401');
+          roles.push('404');
+          roles.push('except');
+          commit('SETROLES', roles);
+          commit('SETUSERINFO', data);
+          resolve(data);
         }).catch((error) => {
           reject(error);
         });

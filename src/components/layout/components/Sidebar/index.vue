@@ -39,14 +39,32 @@ export default {
   methods: {
     /* eslint no-param-reassign: 0 */
     // 权限递归验证
+    // 规定最高层级为三级，只要往下钻两级即可
     permissRecursive(list) {
       const listBack = list;
       listBack.forEach((item) => {
         if (!item.hidden) {
           if (item.children.length !== 1) {
             item.children.forEach((val) => {
-              if (!val.hidden) {
-                val.hidden = this.roles.indexOf(val.name) < 0;
+              if (!val.children) {
+                if (!val.hidden) {
+                  val.hidden = this.roles.indexOf(val.name) < 0;
+                }
+              } else {
+                let count = 0;
+                val.children.forEach((subVal, idx) => {
+                  if (!subVal.hidden) {
+                    if (this.roles.indexOf(subVal.name) < 0) {
+                      subVal.hidden = true;
+                      count += 1;
+                    }
+                  } else {
+                    count += 1;
+                  }
+                  if (count === idx + 1) {
+                    val.hidden = true;
+                  }
+                });
               }
             });
           } else {
@@ -64,6 +82,7 @@ export default {
     console.log(this.roles);
     // this.permission = ['Dashboard', 'Table', 'Form'];
     this.permissionList = this.permissRecursive(constantRouterMap);
+    console.log(this.permissionList);
   },
 };
 </script>

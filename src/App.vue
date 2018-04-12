@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <nav-bar :address="address" :menuList="menuList" :showMenu="isShow" :userName="userName" :title="title"></nav-bar>
+    <nav-bar :address="address" :menuList="menuList" :showMenu="isShow" :userName.sync="userInfo.name" :title="title"></nav-bar>
     <router-view class="child-container"></router-view>
   </div>
 </template>
 
 <script>
 import navBar from '@/components/nav-bar';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'app',
@@ -15,7 +16,6 @@ export default {
       isShow: false,
       address: 'title.png',
       title: '微商城后台管理',
-      userName: '陈东军',
       menuList: [
         {
           isSelected: true,
@@ -31,11 +31,22 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters([
+      'userInfo',
+    ]),
+  },
   components: {
     navBar,
   },
   mounted() {
-    this.$store.dispatch('GetInfo');
+    this.$store.dispatch('GetInfo', {
+      params: {
+        params: {
+          id: 'admin',
+        },
+      },
+    });
   },
 };
 </script>
