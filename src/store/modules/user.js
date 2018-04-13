@@ -23,6 +23,7 @@ const user = {
           roles.push('401');
           roles.push('404');
           roles.push('except');
+          roles.push('login');
           commit('SETROLES', roles);
           commit('SETUSERINFO', data);
           resolve(data);

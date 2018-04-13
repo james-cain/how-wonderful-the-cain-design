@@ -40,13 +40,7 @@ export default {
     navBar,
   },
   mounted() {
-    this.$store.dispatch('GetInfo', {
-      params: {
-        params: {
-          id: 'admin',
-        },
-      },
-    });
+
   },
 };
 </script>

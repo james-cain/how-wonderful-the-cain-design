@@ -7,7 +7,13 @@ Vue.use(Router);
 export const constantRouterMap = [
   {
     path: '/',
-    redirect: '/dashboard/index',
+    redirect: '/login',
+    hidden: true,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index'),
     hidden: true,
   },
   {
