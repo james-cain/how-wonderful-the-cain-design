@@ -31,4 +31,10 @@ export default {
     });
     return user.id ? user : false;
   },
+  logout: () => {
+    const info = {};
+    info.code = 0;
+    info.message = 'success';
+    return info;
+  },
 };

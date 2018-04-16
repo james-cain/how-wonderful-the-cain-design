@@ -16,7 +16,7 @@ import SidebarItem from './SidebarItem';
 export default {
   data() {
     return {
-      permissionList: [],
+      // permissionList: [],
       permission: [],
     };
   },
@@ -34,6 +34,39 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened;
+    },
+    permissionList() {
+      constantRouterMap.forEach((item) => {
+        if (!item.hidden) {
+          if (item.children.length !== 1) {
+            item.children.forEach((val) => {
+              if (!val.children) {
+                if (!val.hidden) {
+                  val.hidden = this.roles.indexOf(val.name) < 0;
+                }
+              } else {
+                let count = 0;
+                val.children.forEach((subVal, idx) => {
+                  if (!subVal.hidden) {
+                    if (this.roles.indexOf(subVal.name) < 0) {
+                      subVal.hidden = true;
+                      count += 1;
+                    }
+                  } else {
+                    count += 1;
+                  }
+                  if (count === idx + 1) {
+                    val.hidden = true;
+                  }
+                });
+              }
+            });
+          } else {
+            item.hidden = this.roles.indexOf(item.name) < 0;
+          }
+        }
+      });
+      return constantRouterMap;
     },
   },
   methods: {
@@ -81,8 +114,8 @@ export default {
     // 此时在左边菜单树中不会显示，同时还需要在做路由跳转是判断当输入没有权限的页面路径时，要提示没有权限的信息
     console.log(this.roles);
     // this.permission = ['Dashboard', 'Table', 'Form'];
-    this.permissionList = this.permissRecursive(constantRouterMap);
-    console.log(this.permissionList);
+    // this.permissionList = this.permissRecursive(constantRouterMap);
+    // console.log(this.permissionList);
   },
 };
 </script>

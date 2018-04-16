@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '@/store';
 
 /* eslint class-methods-use-this: 0 */
 /* eslint no-param-reassign: 0 */
@@ -16,11 +17,18 @@ export default class Server {
         headers: null,
         // withCredentials: true,
       };
+      if (params.params) {
+        params.params.token = store.getters.token;
+      }
       Object.keys(params).forEach((obj) => {
         _option = Object.assign({}, _option, params[obj]);
       });
       axios.request(_option).then((res) => {
-        resolve(typeof res.data === 'object' ? res.data : JSON.parse(res.data));
+        if (res.code === 301) {
+          this.$router.push({ name: 'login' });
+        } else {
+          resolve(typeof res.data === 'object' ? res.data : JSON.parse(res.data));
+        }
       }).catch((error) => {
         if (error.response) {
           reject(error.response.data);

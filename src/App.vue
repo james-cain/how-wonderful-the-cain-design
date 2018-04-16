@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar :address="address" :menuList="menuList" :showMenu="isShow" :userName.sync="userInfo.name" :title="title"></nav-bar>
+    <nav-bar :address="address" :menuList="menuList" :showMenu="isShow" :userName.sync="userInfo.name" :title="title" v-if="userInfo.name"></nav-bar>
     <router-view class="child-container"></router-view>
   </div>
 </template>

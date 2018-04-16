@@ -17,7 +17,7 @@
         </ul>
         <ul class="nav-tool-bar">
           <li><i class="iconfont icon-user"></i>{{userName}}</li>
-          <li>退出</li>
+          <li @click="logout" >退出</li>
         </ul>
       </div>
     </header>
@@ -89,6 +89,11 @@ export default {
         });
         this.$router.push({ name: subMenu.path });
       }
+    },
+    logout() {
+      this.$store.dispatch('LogOut').then(() => {
+        location.reload();// 为了重新实例化vue-router对象 避免bug
+      });
     },
   },
 };

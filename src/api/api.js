@@ -23,6 +23,24 @@ class API extends Server {
       throw err;
     }
   }
+
+  async logout() {
+    try {
+      const result = await this.axios('post', '/login/logout');
+      if (result && result.code === 0) {
+        return result;
+      }
+      const err = {
+        tip: '登出失败',
+        response: result,
+        data: {},
+        url: '/login/logout',
+      };
+      throw err;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default new API();
