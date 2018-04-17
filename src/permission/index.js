@@ -10,19 +10,19 @@ NProgress.configure({
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const token = localStorage.getItem('template_token');
-  let userinfo;
-  let roles;
+  let userinfo = {};
+  let roles = {};
   try {
-    userinfo = JSON.parse(localStorage.getItem('template_userinfo'));
+    userinfo = JSON.parse(localStorage.getItem('template_userinfo')) ? JSON.parse(localStorage.getItem('template_userinfo')) : {};
   } catch (e) {
     console.log(e);
     userinfo = {};
   }
   try {
-    roles = JSON.parse(localStorage.getItem('template_roles'));
+    roles = JSON.parse(localStorage.getItem('template_roles')) ? JSON.parse(localStorage.getItem('template_roles')) : ['init'];
   } catch (e) {
     console.log(e);
-    roles = [];
+    roles = ['init'];
   }
   store.commit('SETTOKEN', token);
   store.commit('SETUSERINFO', userinfo);
