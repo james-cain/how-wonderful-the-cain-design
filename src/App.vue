@@ -40,7 +40,7 @@ export default {
     navBar,
   },
   mounted() {
-
+    console.log('test');
   },
 };
 </script>
