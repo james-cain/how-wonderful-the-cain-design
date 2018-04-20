@@ -17,11 +17,13 @@ export default class Server {
         headers: null,
         // withCredentials: true,
       };
-      if (params.params.headers) {
-        params.params.headers.token = store.getters.token;
-      } else {
-        params.params.headers = {};
-        params.params.headers.token = store.getters.token;
+      if (params.params) {
+        if (params.params.headers) {
+          params.params.headers.token = store.getters.token;
+        } else {
+          params.params.headers = {};
+          params.params.headers.token = store.getters.token;
+        }
       }
       Object.keys(params).forEach((obj) => {
         _option = Object.assign({}, _option, params[obj]);
