@@ -1,4 +1,4 @@
-# 同vue-eim-pc-template-v2
+# vue-eim-pc-template-v2
 
 ## 简介
 
