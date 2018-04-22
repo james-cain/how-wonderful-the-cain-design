@@ -26,9 +26,6 @@ export default {
   components: {
     navBar,
   },
-  mounted() {
-    var a;
-  }
 };
 </script>
 
