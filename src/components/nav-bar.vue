@@ -31,9 +31,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    menuList: {
-      type: [Array, Object],
-    },
     address: {
       type: String,
     },

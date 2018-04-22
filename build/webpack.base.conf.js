@@ -2,7 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const entries = require('./multipage-entry')
+// const entries = require('./multipage-entry')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -24,7 +24,7 @@ const webpackBaseConf = {
   context: path.resolve(__dirname, '../'),
   entry: {
     vendor: ['vue'],
-    app: './src/main.js'
+    app: ['babel-polyfill', './src/main.js'],
   },
   output: {
     path: config.build.assetsRoot,

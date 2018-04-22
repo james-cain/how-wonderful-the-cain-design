@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar :address="address" :menuList="menuList" :showMenu="isShow" :userName.sync="userInfo.name" :title="title" v-if="userInfo.name"></nav-bar>
+    <nav-bar :address="address" :showMenu="isShow" :userName.sync="userInfo.name" :title="title" v-if="userInfo.name"></nav-bar>
     <router-view class="child-container"></router-view>
   </div>
 </template>
@@ -16,19 +16,6 @@ export default {
       isShow: false,
       address: 'title.png',
       title: '微商城后台管理',
-      menuList: [
-        {
-          isSelected: true,
-          name: '菜单一',
-          id: 'id1',
-        },
-        {
-          isSelected: false,
-          name: '菜单二',
-          id: 'id2',
-          url: 'second-page.html',
-        },
-      ],
     };
   },
   computed: {
@@ -40,8 +27,8 @@ export default {
     navBar,
   },
   mounted() {
-    console.log('test');
-  },
+    var a;
+  }
 };
 </script>
 

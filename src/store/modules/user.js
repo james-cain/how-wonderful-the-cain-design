@@ -22,8 +22,8 @@ const user = {
     },
   },
   actions: {
-    // 获取用户信息
-    GetInfo({ commit }, params) {
+    // 登录获取用户信息
+    Login({ commit }, params) {
       return new Promise((resolve, reject) => {
         api.getInfo(params).then((data) => {
           const roles = data.role;

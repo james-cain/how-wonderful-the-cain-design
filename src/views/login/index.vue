@@ -85,7 +85,7 @@ export default {
           message: '帐号不存在!',
         });
       }
-      this.$store.dispatch('GetInfo', {
+      this.$store.dispatch('Login', {
         params: {
           params: {
             id: this.userName,
