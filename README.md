@@ -28,6 +28,7 @@ npm -v
 - [vuex](https://vuex.vuejs.org/zh-cn/)
 - [vue-router](https://router.vuejs.org/zh-cn/)
 - [element-ui](http://element.eleme.io/#/)
+- [less](https://less.bootcss.com/)
 - [echarts](http://echarts.baidu.com/)
 - [mockjs](http://mockjs.com/)
 - [eslint](http://eslint.cn/docs/user-guide/configuring)
@@ -147,6 +148,22 @@ npm run lint
 >**实际开发中，修改登录接口时，role字段是必须要有，且格式要和上面的数组一致，否则权限系统会无效**
 
 经过以上的四步，完成了登录的整个操作流程
+
+##### token认证
+
+> 在开发模板之前，和服务端人员协商好了用户信息认证用jwt方式
+>
+> 处理流程为登录时会将token信息保存到全局缓存中，在每次请求接口数据时，框架自动将token信息保存在header中，若失效直接调转到login页，注销登录信息。
+
+![get-token](image/get-token.jpg)
+
+> 同样是登录接口，其中的**commit('SETTOKEN', 'test')**是处理token值的，在实际项目开发中，应该把这个test替换成由登录获得的真实token
+
+![auth-token](image/auth-token.jpg)
+
+> 路径：/src/api/server.js
+>
+> 注意这里的res.code===301判断。之前和服务端人员协商，当token过期，返回的code会设置为301做标识，因此这里的判断也依据自己的项目中的设置，可能是code，status，state等，依项目修改。
 
 ##### 路由表配置规则
 

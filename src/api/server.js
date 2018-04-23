@@ -31,6 +31,9 @@ export default class Server {
       axios.request(_option).then((res) => {
         if (res.code === 301) {
           this.$router.push({ name: 'login' });
+          store.dispatch('LogOut').then(() => {
+            location.reload();// 为了重新实例化vue-router对象 避免bug
+          });
         } else {
           resolve(typeof res.data === 'object' ? res.data : JSON.parse(res.data));
         }
