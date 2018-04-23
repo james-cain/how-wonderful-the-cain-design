@@ -10,7 +10,7 @@
 
 ### 环境
 
-ß本地要安装[node](https://nodejs.org/en/)(8.0+)，可以直接下载安装版，按照步骤即可。安装完成后，验证是否安装成功。
+本地要安装[node](https://nodejs.org/en/)(8.0+)，可以直接下载安装版，按照步骤即可。安装完成后，验证是否安装成功。
 
 ```
 node -v
@@ -197,9 +197,39 @@ npm run lint
 > 但是在实际开发中，会遇到多种传输参数的方式，如get，post非表单形式，post表单形式，rest形式。以下为这些格式都有对应的书写模板。
 
 1. get请求
+
+![axios-get](image\axios-get.png)
+
+![axios-get-async](image\axios-get-async.png)
+
 2. post表单提交
+
+![axios-form-post](image\axios-form-post.png)
+
+![axios-form-post-async](image\axios-form-post-async.png)
+
+> 注意：若需要传application/x-www-form-urlenconded的头参数，参数应该写成
+>
+> ```
+> const params = {
+>   data: {},
+>   headers: {
+>     'content-type': 'application/x-www-form-urlencoded'
+>   }
+> }
+> ```
+
 3. post非表单提交
+
+> 非表单提交和表单提交基本相同，不同之处要把原来给data赋值的修改成给params赋值
+
 4. rest形式
+
+![axios-rest](image\axios-rest.png)
+
+![axios-rest-async](image\axios-rest-async.png)
+
+>模板框架对rest参数也做了统一封装处理，传参形式为截图方式
 
 ##### 接口代理
 
