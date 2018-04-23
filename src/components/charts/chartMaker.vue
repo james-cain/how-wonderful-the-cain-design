@@ -41,8 +41,9 @@ export default {
     window.addEventListener('resize', () => {
       this.chart.resize();
     });
-    document.getElementById(this.id).addEventListener('resize', () => {
-      console.log('11');
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0];
+    sidebarElm.addEventListener('transitionend', () => {
       this.chart.resize();
     });
   },
