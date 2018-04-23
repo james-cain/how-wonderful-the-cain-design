@@ -5,15 +5,15 @@
         <img :src="`./static/${address}`" alt="">
         <span>{{title}}</span>
         <ul class="nav-bar" v-show="showMenu">
-          <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
+          <!-- <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
             {{item.name}}
-            <!-- <i class="iconfont icon-icon" :class="[item.isHover ? 'rot' : '']" v-show="item.isMenu"></i> -->
-            <!-- <transition name="fade" key="item.id">
+            <i class="iconfont icon-icon" :class="[item.isHover ? 'rot' : '']" v-show="item.isMenu"></i>
+            <transition name="fade" key="item.id">
               <ul class="subMenu" v-show="item.isHover && item.isMenu">
                 <li v-for="(i, l) in item.subMenuList" @mouseenter="changeColorStart(index, l)" @mouseleave="changeColorEnd(index, l)" :class="[i.isSelected ? 'selected' : '', i.isHover ? 'selected' : '']" @click="selectSubMenu(index, i)">{{i.name}}</li>
               </ul>
-            </transition> -->
-          </li>
+            </transition>
+          </li> -->
         </ul>
         <ul class="nav-tool-bar">
           <li><i class="iconfont icon-user"></i>{{userName}}</li>
