@@ -198,15 +198,15 @@ npm run lint
 
 1. get请求
 
-![axios-get](image\axios-get.png)
+![axios-get](image/axios-get.png)
 
-![axios-get-async](image\axios-get-async.png)
+![axios-get-async](image/axios-get-async.png)
 
 2. post表单提交
 
-![axios-form-post](image\axios-form-post.png)
+![axios-form-post](image/axios-form-post.png)
 
-![axios-form-post-async](image\axios-form-post-async.png)
+![axios-form-post-async](image/axios-form-post-async.png)
 
 > 注意：若需要传application/x-www-form-urlenconded的头参数，参数应该写成
 >
@@ -225,11 +225,11 @@ npm run lint
 
 4. rest形式
 
-![axios-rest](image\axios-rest.png)
+![axios-rest](image/axios-rest.png)
 
-![axios-rest-async](image\axios-rest-async.png)
+![axios-rest-async](image/axios-rest-async.png)
 
->模板框架对rest参数也做了统一封装处理，传参形式为截图方式
+>模板框架对rest参数也做了统一封装处理，传参形式为截图方式.
 
 ##### 接口代理
 
