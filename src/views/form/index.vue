@@ -155,6 +155,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 @import '../../styles/mixin.less';
+.demo2 {
+  padding: 20px;
+}
 .form-list {
   margin-top: 30px;
 }

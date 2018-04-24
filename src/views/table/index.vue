@@ -1,5 +1,5 @@
 <template>
-  <div id="nav-demo1">
+  <div class="nav-demo1">
     <!-- <title-bar titleName="地址管理"></title-bar> -->
     <div class="content-tool">
       <el-input
@@ -27,7 +27,6 @@
         border
         tooltip-effect="dark"
         style="width: 100%; font-size: 13px;"
-        :height="tableHeight"
         :default-sort = "{prop: 'tag', order: 'descending'}"
         @selection-change="handleSelectionChange">
         <el-table-column
@@ -195,9 +194,6 @@ export default {
     };
   },
   computed: {
-    tableHeight() {
-      return this.tableData3.length > 10 ? 441 : ((this.tableData3.length + 1) * 40) + 1;
-    },
   },
   methods: {
     toggleSelection(rows) {
@@ -229,6 +225,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.nav-demo1 {
+  padding: 20px;
+}
 .content-title {
   height: 50px;
   line-height: 50px;
@@ -242,7 +241,7 @@ export default {
   height: 60px;
   line-height: 60px;
   background: #F8F8F8;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 .tool-input {
   margin-left: 20px;

@@ -424,7 +424,7 @@ export default {
         data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
       }];
       this.chart4Option = Object.assign({}, this.option, tmpOption);
-    }
+    },
   },
   mounted() {
     this.getChart1Option();
@@ -435,14 +435,13 @@ export default {
 };
 </script>
 
-<style>
-.app-main {
-    background-color: #f0f2f5;
-}
-</style>
-
 <style rel="stylesheet/less" lang="less" scoped>
 .chart {
+    &-content {
+        background-color: #f0f2f5;
+        padding: 20px;
+        overflow: auto;
+    }
     &-nav {
         overflow: auto;
     }
@@ -470,6 +469,7 @@ export default {
         overflow: hidden;
         float: left;
         width: 100%;
+        box-sizing: border-box;
     }
     &-card {
         font-size: 14px;
