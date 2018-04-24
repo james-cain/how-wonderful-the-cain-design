@@ -1,37 +1,59 @@
 <template>
     <div class="chart-content">
-      <div class="chart-row">
-          <div class="chart-container-small">
+        <div class="chart-row">
+            <div class="chart-container-small">
+              <div class="chart-card">
+                  <chart-maker id="chart-small1" height="120px" width="100%" :option.sync="chartOption"></chart-maker>
+                  <div class="chart-desc">日访问量：1,234</div>
+              </div>
+            </div>
+            <div class="chart-container-small">
+                    <div class="chart-card">
+                        <chart-maker id="chart-small2" height="120px" width="100%" :option.sync="chart2Option"></chart-maker>
+                        <div class="chart-desc">转换率：15%</div>
+                    </div>
+            </div>
+            <div class="chart-container-small">
+                    <div class="chart-card">
+                        <chart-maker id="chart-small3" height="120px" width="100%" :option.sync="chart3Option"></chart-maker>
+                        <div class="chart-desc">日访问量：1,234 转换率：15%</div>
+                    </div>
+            </div>
+            <div class="chart-container-small">
+                    <div class="chart-card">
+                        <chart-maker id="chart-small4" height="120px" width="100%" :option.sync="chart4Option"></chart-maker>
+                        <div class="chart-desc">日访问量：1,234</div>
+                    </div>
+            </div>
+        </div>
+        <div class="chart-row">
+            <div class="chart-container-large">
                 <div class="chart-card">
-                    <chart-maker id="chart-small1" height="120px" width="100%" :option.sync="chartOption"></chart-maker>
-                    <div class="chart-desc">日访问量：1,234</div>
+                    <el-tabs v-model="activeName" @tab-click="handleClick">
+                        <el-tab-pane label="销售额" name="first">
+                            <el-col :span="16">
+                                <chart-maker id="chart-large1" height="350px" width="100%" :option.sync="chart5Option" :forceRefresh.sync="forceRefreshChart"></chart-maker>
+                            </el-col>
+                            <el-col :span="8">
+                                <chart-maker id="chart-round" height="350px" width="100%" :option.sync="chart7Option" :forceRefresh.sync="forceRefreshChart"></chart-maker>
+                            </el-col>
+                        </el-tab-pane>
+                        <el-tab-pane label="访问量" name="second">
+                            <el-col :span="16">
+                                <chart-maker id="chart-large2" height="350px" width="100%" :option.sync="chart6Option" :forceRefresh.sync="forceRefreshChart"></chart-maker>
+                            </el-col>
+                            <el-col :span="8">
+                                <chart-maker id="chart-round2" height="350px" width="100%" :option.sync="chart8Option" :forceRefresh.sync="forceRefreshChart"></chart-maker>
+                            </el-col>
+                        </el-tab-pane>
+                    </el-tabs>
                 </div>
-          </div>
-          <div class="chart-container-small">
-                <div class="chart-card">
-                    <chart-maker id="chart-small2" height="120px" width="100%" :option.sync="chart2Option"></chart-maker>
-                    <div class="chart-desc">转换率：15%</div>
-                </div>
-          </div>
-          <div class="chart-container-small">
-                <div class="chart-card">
-                    <chart-maker id="chart-small3" height="120px" width="100%" :option.sync="chart3Option"></chart-maker>
-                    <div class="chart-desc">日访问量：1,234 转换率：15%</div>
-                </div>
-          </div>
-          <div class="chart-container-small">
-                <div class="chart-card">
-                    <chart-maker id="chart-small4" height="120px" width="100%" :option.sync="chart4Option"></chart-maker>
-                    <div class="chart-desc">日访问量：1,234</div>
-                </div>
-          </div>
+            </div>
       </div>
       <div class="chart-row">
-          <div class="chart-container-large">
-              <div class="chart-card">
-                <chart-maker id="chart-large1" height="350px" width="100%" :option.sync="chartOption"></chart-maker>
-              </div>
-          </div>
+        <div class="chart-container-middle">
+
+        </div>
       </div>
   </div>
 </template>
@@ -67,9 +89,25 @@ export default {
       chart2Option: {},
       chart3Option: {},
       chart4Option: {},
+      chart5Option: {},
+      chart6Option: {},
+      chart7Option: {},
+      chart8Option: {},
+      activeName: 'first',
+      forceRefreshChart: false,
     };
   },
   methods: {
+    handleClick() {
+      if (this.activeName === 'second') {
+        this.getChart6Option();
+        this.getChart8Option();
+        this.forceRefreshChart = true;
+      } else {
+        this.forceRefreshChart = true;
+      }
+      setTimeout(() => { this.forceRefreshChart = false; }, 1000);
+    },
     getChart1Option() {
       const tmpOption = {};
       tmpOption.title = {
@@ -425,15 +463,318 @@ export default {
       }];
       this.chart4Option = Object.assign({}, this.option, tmpOption);
     },
+    getChart5Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '销售额趋势',
+        left: '15',
+        top: '10',
+        textStyle: {
+          fontSize: 14,
+          color: '#808080',
+          fontFamily: 'MicrosoftYaHei',
+        },
+      };
+      tmpOption.tooltip = {
+        trigger: 'axis',
+        position(point, params, dom, rect, size) {
+          if (point[0] < 30) {
+            return [0, '20%'];
+          } else if (point[0] > (size.viewSize[0] - 130)) {
+            return [size.viewSize[0] - 130, '20%'];
+          }
+          return [point[0] - 30, '20%'];
+        },
+      };
+      tmpOption.grid = {
+        top: 55,
+        left: '5%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true,
+      };
+      tmpOption.xAxis = [{
+        type: 'category',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      }];
+      tmpOption.yAxis = [{
+        type: 'value',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        axisLabel: {
+          margin: 10,
+          textStyle: {
+            fontSize: 14,
+          },
+        },
+        splitLine: {
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+      }];
+      tmpOption.series = [{
+        name: '日调用频数',
+        type: 'bar',
+        stack: 'one',
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }, {
+        name: '夜调用频数',
+        type: 'bar',
+        stack: 'two',
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }];
+      this.chart5Option = Object.assign({}, this.option, tmpOption);
+    },
+    getChart6Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '访问量趋势',
+        left: '15',
+        top: '10',
+        textStyle: {
+          fontSize: 14,
+          color: '#808080',
+          fontFamily: 'MicrosoftYaHei',
+        },
+      };
+      tmpOption.tooltip = {
+        trigger: 'axis',
+        position(point, params, dom, rect, size) {
+          if (point[0] < 30) {
+            return [0, '20%'];
+          } else if (point[0] > (size.viewSize[0] - 130)) {
+            return [size.viewSize[0] - 130, '20%'];
+          }
+          return [point[0] - 30, '20%'];
+        },
+      };
+      tmpOption.grid = {
+        top: 55,
+        left: '5%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true,
+      };
+      tmpOption.xAxis = [{
+        type: 'category',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      }];
+      tmpOption.yAxis = [{
+        type: 'value',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        axisLabel: {
+          margin: 10,
+          textStyle: {
+            fontSize: 14,
+          },
+        },
+        splitLine: {
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+      }];
+      tmpOption.series = [{
+        name: '日访问量',
+        type: 'line',
+        smooth: true,
+        // symbol: 'circle',
+        symbolSize: 6,
+        showSymbol: true,
+        lineStyle: {
+          normal: {
+            width: 2,
+          },
+        },
+        itemStyle: {
+          normal: {
+            color: '#0086E6',
+            borderColor: '#0086E6',
+            borderWidth: 2,
+          },
+        },
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }];
+      this.chart6Option = Object.assign({}, this.option, tmpOption);
+    },
+    getChart7Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '销售额趋势占比',
+        left: '15',
+        top: '10',
+        textStyle: {
+          fontSize: 14,
+          color: '#808080',
+          fontFamily: 'MicrosoftYaHei',
+        },
+      };
+      tmpOption.tooltip = {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
+      };
+      tmpOption.legend = {
+        orient: 'vertical',
+        right: 20,
+        top: 115,
+        bottom: 20,
+        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+      };
+      tmpOption.series = [{
+        name: '访问来源',
+        type: 'pie',
+        center: ['30%', '50%'],
+        radius: ['30%', '50%'],
+        avoidLabelOverlap: false,
+        label: {
+          normal: {
+            show: false,
+            position: 'center',
+          },
+          emphasis: {
+            show: true,
+            textStyle: {
+              fontSize: '18',
+              fontWeight: 'bold',
+            },
+          },
+        },
+        labelLine: {
+          normal: {
+            show: false,
+          },
+        },
+        data: [
+          { value: 335, name: '直接访问' },
+          { value: 310, name: '邮件营销' },
+          { value: 234, name: '联盟广告' },
+          { value: 135, name: '视频广告' },
+          { value: 1548, name: '搜索引擎' },
+        ],
+      }];
+      this.chart7Option = Object.assign({}, this.option, tmpOption);
+    },
+    getChart8Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '访问量趋势占比',
+        left: '15',
+        top: '10',
+        textStyle: {
+          fontSize: 14,
+          color: '#808080',
+          fontFamily: 'MicrosoftYaHei',
+        },
+      };
+      tmpOption.tooltip = {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
+      };
+      tmpOption.visualMap = {
+        show: false,
+        min: 80,
+        max: 600,
+        inRange: {
+          colorLightness: [0, 1],
+        },
+      };
+      tmpOption.series = [{
+        name: '访问来源',
+        type: 'pie',
+        radius: '50%',
+        center: ['50%', '50%'],
+        data: [
+          { value: 335, name: '直接访问' },
+          { value: 310, name: '邮件营销' },
+          { value: 274, name: '联盟广告' },
+          { value: 235, name: '视频广告' },
+          { value: 400, name: '搜索引擎' },
+        ].sort((a, b) => a.value - b.value),
+        roseType: 'radius',
+        label: {
+          normal: {
+            textStyle: {
+              color: 'rgba(0, 0, 0, 0.3)',
+            },
+          },
+        },
+        labelLine: {
+          normal: {
+            lineStyle: {
+              color: 'rgba(0, 0, 0, 0.3)',
+            },
+            smooth: 0.2,
+            length: 10,
+            length2: 20,
+          },
+        },
+        itemStyle: {
+          normal: {
+            color: '#c23531',
+          },
+        },
+      }];
+      this.chart8Option = Object.assign({}, this.option, tmpOption);
+    },
   },
   mounted() {
     this.getChart1Option();
     this.getChart2Option();
     this.getChart3Option();
     this.getChart4Option();
+    this.getChart5Option();
+    this.getChart7Option();
   },
 };
 </script>
+
+<style>
+.chart-card .el-tabs__header {
+    padding: 20px 20px 0px;
+}
+</style>
 
 <style rel="stylesheet/less" lang="less" scoped>
 .chart {

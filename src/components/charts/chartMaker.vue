@@ -30,6 +30,10 @@ export default {
     option: {
       type: Object,
     },
+    forceRefresh: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -37,6 +41,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.id);
     this.initChart();
     window.addEventListener('resize', () => {
       this.chart.resize();
@@ -57,6 +62,12 @@ export default {
   watch: {
     option(val) {
       this.chart.setOption(val);
+    },
+    forceRefresh(val) {
+      if (val) {
+        console.log(val);
+        this.chart.resize();
+      }
     },
   },
   methods: {
