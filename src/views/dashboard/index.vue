@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-container">
-      <div class="dashboard-text">name:{{name}}</div>
+      <img src="../../../static/title-best.svg" class="logo" alt="">
+      <div class="dashboard-text">{{name}},welcome to a fantastic world!</div>
     </div>
   </div>
 </template>
@@ -22,11 +23,19 @@ export default {
 <style rel="stylesheet/less" lang="less" scoped>
   .dashboard {
     &-container {
-      margin: 30px;
+      margin: 80px;
+      text-align: center;
     }
     &-text {
       font-size: 30px;
       line-height: 46px;
+      font-family: 'Gamja Flower', cursive;
+      font-weight: bold;
     }
+    
   }
+  .logo {
+      height: 250px;
+      width: 250px;
+    }
 </style>

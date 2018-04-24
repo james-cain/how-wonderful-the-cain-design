@@ -2,8 +2,8 @@
   <div>
     <header>
       <div class="container">
-        <img :src="`./static/${address}`" alt="">
-        <span>{{title}}</span>
+        <img :src="`./static/${address}`" class="logo" alt="" />
+        <img src="../../static/logo.svg" class="logo-name" alt="" />
         <ul class="nav-bar" v-show="showMenu">
           <!-- <li v-for="(item, index) in menuList" :key="index" @mouseenter="rotStart(index)" @mouseleave="rotEnd(index)" :class="[item.isSelected ? 'selected' : '']" @click="selectMenu(item)">
             {{item.name}}
@@ -15,10 +15,15 @@
             </transition>
           </li> -->
         </ul>
-        <ul class="nav-tool-bar">
-          <li><i class="iconfont icon-user"></i>{{userName}}</li>
-          <li @click="logout" >退出</li>
-        </ul>
+        <el-dropdown @command="handleCommand">
+          <span class="el-dropdown-link">
+            {{userName}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="self-info">个人信息</el-dropdown-item>
+            <el-dropdown-item command="exit">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </header>
   </div>
@@ -87,10 +92,18 @@ export default {
         this.$router.push({ name: subMenu.path });
       }
     },
-    logout() {
-      this.$store.dispatch('LogOut').then(() => {
-        location.reload();// 为了重新实例化vue-router对象 避免bug
-      });
+    handleCommand(command) {
+      switch (command) {
+        case 'exit':
+          this.$store.dispatch('LogOut').then(() => {
+            location.reload();// 为了重新实例化vue-router对象 避免bug
+          });
+          break;
+        case 'self-info':
+          break;
+        default:
+          break;
+      }
     },
   },
 };
@@ -112,6 +125,18 @@ ul {
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
 }
+.el-dropdown {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #fff;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
 .container {
   height: 48px;
   line-height: 48px;
@@ -130,8 +155,13 @@ ul {
   overflow: hidden;
   white-space: nowrap;
 }
-.container > img {
+.container > .logo {
   height: 30px;
+  float: left;
+}
+.container > .logo-name {
+  height: 30px;
+  margin-left: 20px;
   float: left;
 }
 .container > span {
