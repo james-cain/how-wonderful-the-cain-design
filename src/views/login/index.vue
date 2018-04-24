@@ -1,65 +1,140 @@
 <template>
-  <div id="login">
-    <div class="login-box">
-      <div class="login-logo">开发模版</div>
-      <div class="login-box-body">
-        <p>管理员登录</p>
-        <el-input
-          placeholder="输入帐号"
-          v-model="userName"
-          value="admin"
-          class="input">
-          <i slot="icon" class="iconfont el-input__icon icon-account"></i>
-        </el-input>
-        <el-input
-          placeholder="输入密码"
-          v-model="password"
-          type="password"
-          value="123"
-          class="input">
-          <i slot="icon" class="iconfont el-input__icon icon-password"></i>
-        </el-input>
+  <div class="login">
+    <section :style="{height: sectionHeight + 'px'}">
+      <img class="bg-left" src="../../assets/images/login/login_bg.png"/>
+      <div class="login-nav">
+        <div class="tab-nav">
+          <ul>
+            <li :class="[tab === 0 ? 'selected' : '']" @click="changeTab(0)">账号登录</li>
+            <!-- <li :class="[tab === 1 ? 'selected' : '']" @click="changeTab(1)">扫码登录</li> -->
+          </ul>
+        </div>
+        <div class="line-left" v-if="tab === 0"></div>
+        <div class="line-right"  v-if="tab === 1"></div>
+        <div class="login-account-nav" v-if="tab === 0">
+          <el-input class="account-input" v-model="userName" placeholder="请输入账号"></el-input>
+          <el-input class="account-input" v-model="password" type="password" placeholder="请输入密码"></el-input>
+          <el-button class="account-btn" type="primary" @click="login">登录</el-button>
+        </div>
+        <!-- <div class="login-scan-nav" v-if="tab === 1">
+          <img src="/static/qrcode.png"/>
+          <div>点击扫一扫>扫码登录</div>
+        </div> -->
       </div>
-      <el-button type="primary" class="login-btn" @click="login">登录</el-button>
-    </div>
+    </section>
+    <img class="bg-bottom" src="../../assets/images/login/login_bg_bottom.png"/>
   </div>
 </template>
 
 <style lang="less" scoped>
-.login-box {
-  width: 360px;
-  height: 240px;
-  margin: 7% auto;
-  border: 1px solid rgb(191, 203, 217);
-  border-radius: 3px;
-  padding: 20px;
-  position: relative;
-  .login-logo {
-    font-size: 35px;
-    text-align: center;
-    font-weight: 300;
+  .main {
+    overflow: hidden;
   }
-  .login-box-body {
-    background: #ffffff;
-    padding: 20px;
-    border-top: 0;
-    color: #666666;
+  section {
+    overflow: hidden;
+    width: 100%;
+    min-height: 523px;
+    background: #D5EBFF;
+    float: left;
     position: relative;
+    .bg-left {
+      height: 400px;
+      width: 390px;
+      position: absolute;
+      top: 66px;
+      left: 180px;
+    }
+    .login-nav {
+      height: 390px;
+      width: 380px;
+      background: #fff;
+      position: absolute;
+      top: 90px;
+      right: 200px;
+      .line-left, .line-right {
+        border-top: 2px solid #0086E6;
+        // width: 189px;
+        width: 380px;
+        position: absolute;
+        top: 0;
+      }
+      .line-left {
+        left: 0;
+      }
+      .line-right {
+        left: 190px;
+      }
+      .tab-nav {
+        height: 60px;
+        width: inherit;
+        color: #333;
+        font-weight: bold;
+        font-size: 14px;
+        // cursor: pointer;
+      }
+      ul {
+        padding: 14px 0;
+        margin: 0;
+        li {
+          list-style: none;
+          float: left;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          width: 390px;
+          // &:first-child {
+          //   border-right: 1px solid #E6E6E6;
+          // }
+          &.selected {
+            color: #0086E6;
+          }
+        }
+      }
+      .login-account-nav {
+        padding: 72px 50px 52px 50px;
+        height: 330px;
+        box-sizing: border-box;
+        .account-input {
+          .el-input__inner {
+            height: 50px !important;
+            border-radius: 0;
+          }
+          &:first-child {
+            margin-bottom: 13px;
+          }
+        }
+        .account-btn {
+          height: 50px;
+          width: 280px;
+          margin-top: 43px;
+          border-radius: 0;
+        }
+      }
+      .login-scan-nav {
+        padding: 42px 0;
+        height: 330px;
+        box-sizing: border-box;
+        text-align: center;
+        img {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+          margin-bottom: 34px;
+        }
+        div {
+          font-size: 14px;
+          height: 14px;
+          color: #808080;
+        }
+      }
+    }
   }
-  p {
-    margin: 0;
-    text-align: center;
-    padding: 0 20px 20px 20px;
+
+  .bg-bottom {
+    width: 100%;
+    height: 152px;
+    float: left;
   }
-  .input {
-    margin-bottom: 15px;
-  }
-  .login-btn {
-    position: absolute;
-    right: 40px;
-    bottom: 10px;
-  }
-}
 </style>
 
 <script>
@@ -67,11 +142,19 @@ export default {
   name: 'login',
   data() {
     return {
+      windowHeight: 0,
+      sectionHeight: 0,
+      tab: 0,
       userName: '',
       password: '',
     };
   },
   methods: {
+    changeTab(id) {
+      if (this.tab !== id) {
+        this.tab = id;
+      }
+    },
     login() {
       if (this.userName === '') {
         this.$message({
@@ -97,6 +180,18 @@ export default {
         this.loading = false;
       });
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.windowHeight = document.documentElement.clientHeight;
+      this.sectionHeight = this.windowHeight - 300;
+    });
+    window.addEventListener('resize', () => {
+      this.$nextTick(() => {
+        this.windowHeight = document.documentElement.clientHeight;
+        this.sectionHeight = this.windowHeight - 300;
+      });
+    });
   },
 };
 </script>
