@@ -32,7 +32,7 @@ export default {
       font-family: 'Gamja Flower', cursive;
       font-weight: bold;
     }
-    
+
   }
   .logo {
       height: 250px;

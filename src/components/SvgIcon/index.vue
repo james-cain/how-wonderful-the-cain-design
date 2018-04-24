@@ -1,5 +1,5 @@
 <template>
-  <svg :class="svgClass" aria-hidden="true">
+  <svg :class="svgClass" aria-hidden="true" @click="callEvent">
     <use :xlink:href="iconName"></use>
   </svg>
 </template>
@@ -25,6 +25,11 @@ export default {
         return `svg-icon ${this.className}`;
       }
       return 'svg-icon';
+    },
+  },
+  methods: {
+    callEvent() {
+      this.$emit('callback');
     },
   },
 };

@@ -36,7 +36,7 @@ export const constantRouterMap = [
       path: 'index',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'example' },
+      meta: { title: 'Dashboard', icon: 'dashboard' },
     }],
   }, {
     path: '/example',

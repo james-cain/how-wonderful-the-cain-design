@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import 'babel-polyfill'; // 兼容ie9
-import { Dropdown, DropdownMenu, DropdownItem, Col, Tabs, TabPane, Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem } from 'element-ui';
+import { RadioButton, CheckboxButton, Dropdown, DropdownMenu, DropdownItem, Col, Tabs, TabPane, Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem } from 'element-ui';
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import '@/icons'; // icon
 import '@/mock';
@@ -29,8 +29,10 @@ Vue.component(Select.name, Select);
 Vue.component(Form.name, Form);
 Vue.component(FormItem.name, FormItem);
 Vue.component(CheckboxGroup.name, CheckboxGroup);
+Vue.component(CheckboxButton.name, CheckboxButton);
 Vue.component(Checkbox.name, Checkbox);
 Vue.component(RadioGroup.name, RadioGroup);
+Vue.component(RadioButton.name, RadioButton);
 Vue.component(Radio.name, Radio);
 Vue.component(Dialog.name, Dialog);
 Vue.component(Tree.name, Tree);

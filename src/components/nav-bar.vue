@@ -15,6 +15,7 @@
             </transition>
           </li> -->
         </ul>
+        <svg-icon icon-class="github" class="github" @callback="goTogithub"></svg-icon>
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             {{userName}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -47,6 +48,9 @@ export default {
     },
   },
   methods: {
+    goTogithub() {
+      location.href = 'https://github.com/james-cain';
+    },
     rotStart(index) {
       this.menuList[index].isHover = true;
     },
@@ -119,6 +123,13 @@ header {
   z-index: 1000;
   width: 100%;
   min-width: 1000px;
+}
+.github {
+  font-size: 22px;
+  position: absolute;
+  top: 14px;
+  right: 100px;
+  cursor: pointer;
 }
 ul {
   -webkit-padding-start: 0px;

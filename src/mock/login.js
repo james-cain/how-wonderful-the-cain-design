@@ -6,13 +6,9 @@ const userMap = [{
   // avatar: '',
   name: 'admin',
 }, {
-  id: 'demoUser',
-  role: ['Dashboard', 'Table'],
-  name: 'demoUser',
-}, {
-  id: 'demoSubUser',
-  role: ['Dashboard', 'SubTable'],
-  name: 'demoSubUser',
+  id: 'ChartUser',
+  role: ['Dashboard', 'Chart'],
+  name: 'ChartUser',
 }];
 
 export default {
