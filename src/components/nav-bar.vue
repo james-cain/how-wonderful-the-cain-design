@@ -111,8 +111,8 @@ export default {
 
 <style>
 header {
-  background-color: #003c78;
-  border-color: #003c78;
+  background-color: #002140;
+  border-color: #002140;
   position: fixed;
   top: 0;
   left: 0;

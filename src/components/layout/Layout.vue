@@ -113,7 +113,7 @@ a {
   .el-submenu .el-menu-item,
   .el-menu-item {
     // min-width: 200px!important;
-    background-color: #1b2936!important;
+    background-color: #001529!important;
     &:hover {
       background-color: #0080ff!important;
       color: #fff!important;

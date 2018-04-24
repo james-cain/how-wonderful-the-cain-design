@@ -1,8 +1,8 @@
-# cain-template-webpack-vue-v2
+# **how-wonderful-cain-design**
 
 ## 简介
 
-**cain-template-webpack-vue-v2**是继v1版本后的一个升级版的后台模板，基于`vue.js`和`element`。目前模板项目中集成了*登陆*，*权限验证*，*路由配置*，*ajax请求*，*mock*，*图表*，*404页面*，*401页面*以及若干个*模板页面*。解决服务端人员开发后台管理页面的痛处。接下来会好好介绍使用该项目之前要做的准备，以及如何使用该项目，望能帮助到一些前端基础较为薄弱的伙伴~
+****how-wonderful-cain-design**是继v1版本后的一个升级版的后台模板，基于`vue.js`和`element`。目前模板项目中集成了*登陆*，*权限验证*，*路由配置*，*ajax请求*，*mock*，*图表*，*404页面*，*401页面*以及若干个*模板页面*。解决服务端人员开发后台管理页面的痛处。接下来会好好介绍使用该项目之前要做的准备，以及如何使用该项目，望能帮助到一些前端基础较为薄弱的伙伴~
 
 本项目参考[vue-admin-element](https://github.com/PanJiaChen/vue-element-admin)
 
