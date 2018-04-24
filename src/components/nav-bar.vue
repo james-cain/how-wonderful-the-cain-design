@@ -105,6 +105,7 @@ header {
   left: 0;
   z-index: 1000;
   width: 100%;
+  min-width: 1000px;
 }
 ul {
   -webkit-padding-start: 0px;
@@ -130,8 +131,7 @@ ul {
   white-space: nowrap;
 }
 .container > img {
-  width: 165px;
-  height: 48px;
+  height: 30px;
   float: left;
 }
 .container > span {

@@ -14,8 +14,8 @@ export default {
   data() {
     return {
       isShow: false,
-      address: 'title.png',
-      title: '微商城后台管理',
+      address: 'title.svg',
+      title: '企业后台管理',
     };
   },
   computed: {

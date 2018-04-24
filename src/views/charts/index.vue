@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-content">
+    <div class="chart-content">
       <div class="chart-row">
           <div class="chart-container-small">
                 <div class="chart-card">
@@ -21,9 +21,16 @@
           </div>
           <div class="chart-container-small">
                 <div class="chart-card">
-                    <chart-maker id="chart-small4" height="120px" width="100%" :option.sync="chartOption"></chart-maker>
+                    <chart-maker id="chart-small4" height="120px" width="100%" :option.sync="chart4Option"></chart-maker>
                     <div class="chart-desc">日访问量：1,234</div>
                 </div>
+          </div>
+      </div>
+      <div class="chart-row">
+          <div class="chart-container-large">
+              <div class="chart-card">
+                <chart-maker id="chart-large1" height="350px" width="100%" :option.sync="chartOption"></chart-maker>
+              </div>
           </div>
       </div>
   </div>
@@ -59,6 +66,7 @@ export default {
       chartOption: {},
       chart2Option: {},
       chart3Option: {},
+      chart4Option: {},
     };
   },
   methods: {
@@ -183,7 +191,7 @@ export default {
       };
       tmpOption.grid = {
         top: 55,
-        left: '-8%',
+        left: '-15',
         right: '5%',
         bottom: '0%',
         containLabel: true,
@@ -263,7 +271,7 @@ export default {
       };
       tmpOption.grid = {
         top: 55,
-        left: '-8%',
+        left: '-15',
         right: '5%',
         bottom: '2%',
         containLabel: true,
@@ -337,11 +345,92 @@ export default {
       }];
       this.chart3Option = Object.assign({}, this.option, tmpOption);
     },
+    getChart4Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '调用频数',
+        left: '5',
+        top: '10',
+      };
+      tmpOption.tooltip = {
+        trigger: 'axis',
+        position(point, params, dom, rect, size) {
+          if (point[0] < 30) {
+            return [0, '20%'];
+          } else if (point[0] > (size.viewSize[0] - 130)) {
+            return [size.viewSize[0] - 130, '20%'];
+          }
+          return [point[0] - 30, '20%'];
+        },
+      };
+      tmpOption.grid = {
+        top: 55,
+        left: '-15',
+        right: '5%',
+        bottom: '2%',
+        containLabel: true,
+      };
+      tmpOption.xAxis = [{
+        show: false,
+        type: 'category',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      }];
+      tmpOption.yAxis = [{
+        show: false,
+        type: 'value',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        axisLabel: {
+          margin: 10,
+          textStyle: {
+            fontSize: 14,
+          },
+        },
+        splitLine: {
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+      }];
+      tmpOption.series = [{
+        name: '日调用频数',
+        type: 'bar',
+        stack: 'one',
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }, {
+        name: '夜调用频数',
+        type: 'bar',
+        stack: 'two',
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }];
+      this.chart4Option = Object.assign({}, this.option, tmpOption);
+    }
   },
   mounted() {
     this.getChart1Option();
     this.getChart2Option();
     this.getChart3Option();
+    this.getChart4Option();
   },
 };
 </script>
@@ -354,6 +443,9 @@ export default {
 
 <style rel="stylesheet/less" lang="less" scoped>
 .chart {
+    &-nav {
+        overflow: auto;
+    }
     &-row {
         margin-left: -12px;
         margin-right: -12px;
@@ -370,6 +462,14 @@ export default {
         margin-bottom: 24px;
         overflow: hidden;
         float: left;
+    }
+    &-container-large {
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-bottom: 24px;
+        overflow: hidden;
+        float: left;
+        width: 100%;
     }
     &-card {
         font-size: 14px;
@@ -402,7 +502,7 @@ export default {
         width: 25%;
     }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
     .chart-container-small {
         display: block;
         box-sizing: border-box;

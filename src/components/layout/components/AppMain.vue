@@ -15,5 +15,6 @@ export default {
 <style rel="stylesheet/less" lang="less">
   .app-main {
     padding: 20px;
+    min-width: 785px;
   }
 </style>

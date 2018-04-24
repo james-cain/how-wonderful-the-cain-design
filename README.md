@@ -259,25 +259,21 @@ npm run lint
 ```
 proxyTable: {
   '/cloudfs': {
-    target: 'http://eim2.szcomtop.com:6888',
+    target: 'http://your_ip_address',
     changeOrigin: true,
     pathRewrite: {
   		'^/cloudfs': '/cloudfs'
 	}
   },
   '/api': {
-    target: 'http://eim2.szcomtop.com:6888',
+    target: 'http://your_ip_address',
     changeOrigin: true,
     pathRewrite: {
     	'^/api': '/api'
     }
   },
-  '/uom': {
-    target: 'http://eim2.szcomtop.com:6888',
-    changeOrigin: true
-  },
   '/plustek': {
-    target: 'http://eim2.szcomtop.com:6888/plustek',
+    target: 'http://your_ip_address/plustek',
     changeOrigin: true,
     onProxyReq: function (proxyReq, req, res) {
       console.log('获取到', process.env.eimCookie)
@@ -287,10 +283,6 @@ proxyTable: {
     	'^/plustek': ''
     }
   }
-},
-session: {
-  userName: 'admin',
-  path: 'http://eim2.szcomtop.com:6888/plustek/pc/index.html' // eim2中对应项目的链接
 }
 ```
 
@@ -300,17 +292,7 @@ session: {
 
 > 若后台系统有自己的认证机制，如jwt。则可以不用考虑cookie信息认证。
 >
-> 若是用企信认证机制，就要设置cookie。开发环境的Cookie是模拟放置在header中处理的，因此设置cookie有两种方式，
->
-> 1. 直接在上面的配置代理中，添加onProxyReq的配置，往header信息中塞进Cookie信息，保存重新npm run dev
-> 2. 方式二用登录脚本，自动登录获取Cookie，拼接到header中。方式二较为复杂，接下来介绍下步骤。
->    - 修改/config/index.js中的session对象的path，该path可以写本项目的swagger-ui.html。脚本会先请求该url获取有效信息后，保存到nodejs的全局对象process.env.eimCookie中。userName和password为登录的账号和密码
->    - 启动后，会自动获取，不需要开发人员去替换cookie
->    - 若cookie过期，只要将浏览器的请求地址替换成http://your_ip_address/reset会自动续期。续期后回到原来的页面请求，就不会过期了。
->
-> 方式一和方式二对比，第一种每次要自己修改替换，第二种只要修改配置中的path就可以。
->
-> 但是不是所有的情况都支持第二种的，因为第二种情况是企信认证机制的脚本，若不走这个方式，也只能用第一种方式。
+> 若要走cookie，直接在上面的配置代理中，添加onProxyReq的配置，往header信息中塞进Cookie信息，保存重新npm run dev
 
 ##### eslint代码规范修改步骤
 
