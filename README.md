@@ -308,6 +308,137 @@ proxyTable: {
 >
 > 若要走cookie，直接在上面的配置代理中，添加onProxyReq的配置，往header信息中塞进Cookie信息，保存重新npm run dev
 
+##### echarts图使用
+
+1. 引入chart-maker组件
+
+```
+import chartMaker from '@/components/charts/chartMaker';
+
+components: {
+	chartMaker,
+},
+```
+
+2. 引入标签
+
+```
+<chart-maker id="chart-small1" height="120px" width="100%" :option.sync="chartOption" :forceRefresh.sync="forceRefreshChart"></chart-maker>
+id---不能重复
+height---固定高度
+width---宽度使用百分比，才能支持自适应，容器宽度由外层容器控制。
+option---echarts参数，模板中已经集成了较为常用的图形使用
+forceRefresh---强制刷新组件，传入为true时才会强制刷新
+```
+
+3. 定义属性
+
+```
+getChart1Option() {
+      const tmpOption = {};
+      tmpOption.title = {
+        text: '访问量',
+        left: '5',
+        top: '10',
+      };
+      tmpOption.tooltip = {
+        axisPointer: {
+          lineStyle: {
+            color: '#57617B',
+          },
+        },
+        position(point, params, dom, rect, size) {
+          if (point[0] < 30) {
+            return [0, '50%'];
+          } else if (point[0] > (size.viewSize[0] - 80)) {
+            return [size.viewSize[0] - 80, '50%'];
+          }
+          return [point[0] - 30, '50%'];
+        },
+        formatter: '{b}月: {c}',
+      };
+      tmpOption.grid = {
+        top: 55,
+        left: '-8%',
+        right: '5%',
+        bottom: '2%',
+        containLabel: true,
+      };
+      tmpOption.xAxis = [{
+        show: false,
+        type: 'category',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      }];
+      tmpOption.yAxis = [{
+        show: false,
+        type: 'value',
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#475669',
+          },
+        },
+        axisLabel: {
+          margin: 10,
+          textStyle: {
+            fontSize: 14,
+          },
+        },
+        splitLine: {
+          lineStyle: {
+            color: ['#E3E9EF'],
+          },
+        },
+      }];
+      tmpOption.series = [{
+        name: '日访问量',
+        type: 'line',
+        smooth: true,
+        // symbol: 'circle',
+        symbolSize: 6,
+        showSymbol: true,
+        lineStyle: {
+          normal: {
+            width: 2,
+          },
+        },
+        itemStyle: {
+          normal: {
+            color: '#0086E6',
+            borderColor: '#0086E6',
+            borderWidth: 2,
+          },
+        },
+        data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      }];
+      this.chartOption = Object.assign({}, this.option, tmpOption);
+    },
+注意：模板中使用的属性设置方法，用的是Object.assign，用方法中的tmpOption属性强制覆盖默认的option属性，传入到组件
+```
+
+4. 调用属性配置方法
+
+```
+this.getChart1Option();
+// 调用这个方法后，表格就能展现了
+```
+
 ##### eslint代码规范修改步骤
 
 > 当你写完代码后，兴致勃勃的认为已经完成了，于是想发布。结果发现，发布会被驳回，因为当代码中存在格式问题的话，是不允许提交到服务器上的。
