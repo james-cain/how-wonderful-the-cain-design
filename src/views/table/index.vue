@@ -36,7 +36,7 @@
         <el-table-column
           label="日期"
           width="120">
-          <template scope="scope">{{ scope.row.date }}</template>
+          <template slot-scope="scope">{{ scope.row.date }}</template>
         </el-table-column>
         <el-table-column
           prop="name"
@@ -58,7 +58,7 @@
           label="标签"
           width="90"
           sortable>
-          <template scope="scope">
+          <template slot-scope="scope">
             <div :class="[scope.row.tag === '家' ? 'tag-home' : 'tag-comp']">{{scope.row.tag}}</div>
           </template>
         </el-table-column>
@@ -71,7 +71,7 @@
         <el-table-column
           prop="todo"
           label="操作">
-          <template scope="scope">
+          <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
             <el-button type="text" size="small" style="color: #FB4853;">删除</el-button>
           </template>
