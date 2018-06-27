@@ -58,9 +58,5 @@ export default {
       default: false,
     },
   },
-  mounted() {
-    console.log(this.isNest);
-    console.log(this.routes);
-  },
 };
 </script>

@@ -4,7 +4,7 @@
       <template slot="tool">
         <span class="tool">
           <el-button type="primary" @click="openEdit">保存</el-button>
-          <el-button>返回</el-button>
+          <el-button @click="back">返回</el-button>
         </span>
       </template>
     </title-bar>
@@ -147,6 +147,9 @@ export default {
     },
     openEdit() {
       this.msgShow = true;
+    },
+    back() {
+      this.$router.push({ name: 'Test' });
     },
   },
 };

@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   created() {
     this.getBreadcrumb();
@@ -24,14 +26,17 @@ export default {
       this.getBreadcrumb();
     },
   },
+  computed: {
+    ...mapGetters([
+      'currentPath',
+    ]),
+  },
   methods: {
     getBreadcrumb() {
-      const matched = this.$route.matched.filter(item => item.name);
-      // const first = matched[0];
-      //   if (first && first.name !== 'dashboard') {
-      //     matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched);
-      //   }
-      this.levelList = matched;
+      if (this.currentPath === this.$route.path) {
+        const matched = this.$route.matched.filter(item => item.name);
+        this.levelList = matched;
+      }
     },
   },
 };

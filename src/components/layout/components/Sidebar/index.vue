@@ -1,6 +1,6 @@
 <template>
   <scroll-bar>
-      <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse"
+      <el-menu mode="vertical" unique-opened :default-active="currentPath" :collapse="isCollapse"
         background-color="#001529" text-color="#646f7a" active-text-color="#fff">
         <sidebar-item :routes.sync="permissionList"></sidebar-item>
       </el-menu>
@@ -10,15 +10,39 @@
 <script>
 import { mapGetters } from 'vuex';
 import ScrollBar from '@/components/ScrollBar';
-import { constantRouterMap } from '@/router';
+import { menuConfig, constantRouterMap } from '@/router';
 import SidebarItem from './SidebarItem';
-
+/* eslint no-param-reassign: 0 */
 export default {
   data() {
     return {
       // permissionList: [],
       permission: [],
     };
+  },
+  watch: {
+    $route(val) {
+      if (this.recursive(menuConfig, val.name)) {
+        this.$store.dispatch('SETCURRENTPATH', val.path);
+      }
+    },
+  },
+  methods: {
+    recursive(arr, val) {
+      let flag = false;
+      if (arr.length <= 0) return flag;
+      /* eslint no-restricted-syntax: 0 */
+      for (const item of arr.values()) {
+        if (item.children) {
+          flag = this.recursive(item.children, val);
+        } else if (item.name === val) {
+          flag = true;
+          break;
+        }
+        if (flag) break;
+      }
+      return flag;
+    },
   },
   components: {
     SidebarItem,
@@ -28,10 +52,8 @@ export default {
     ...mapGetters([
       'sidebar',
       'roles',
+      'currentPath',
     ]),
-    routes() {
-      return this.$router.options.routes;
-    },
     isCollapse() {
       return !this.sidebar.opened;
     },
@@ -67,55 +89,13 @@ export default {
         }
       });
       return constantRouterMap;
-    },
-  },
-  methods: {
-    /* eslint no-param-reassign: 0 */
-    // 权限递归验证
-    // 规定最高层级为三级，只要往下钻两级即可
-    permissRecursive(list) {
-      const listBack = list;
-      listBack.forEach((item) => {
-        if (!item.hidden) {
-          if (item.children.length !== 1) {
-            item.children.forEach((val) => {
-              if (!val.children) {
-                if (!val.hidden) {
-                  val.hidden = this.roles.indexOf(val.name) < 0;
-                }
-              } else {
-                let count = 0;
-                val.children.forEach((subVal, idx) => {
-                  if (!subVal.hidden) {
-                    if (this.roles.indexOf(subVal.name) < 0) {
-                      subVal.hidden = true;
-                      count += 1;
-                    }
-                  } else {
-                    count += 1;
-                  }
-                  if (count === idx + 1) {
-                    val.hidden = true;
-                  }
-                });
-              }
-            });
-          } else {
-            item.hidden = this.roles.indexOf(item.name) < 0;
-          }
-        }
-      });
-      return listBack;
+      // return menuConfig;
     },
   },
   mounted() {
-    // 模拟权限控制
-    // 实际调API获取拥有的权限
-    // 此时在左边菜单树中不会显示，同时还需要在做路由跳转是判断当输入没有权限的页面路径时，要提示没有权限的信息
-    console.log(this.roles);
-    // this.permission = ['Dashboard', 'Table', 'Form'];
-    // this.permissionList = this.permissRecursive(constantRouterMap);
-    // console.log(this.permissionList);
+    if (this.recursive(menuConfig, this.$route.name)) {
+      this.$store.dispatch('SETCURRENTPATH', this.$route.path);
+    }
   },
 };
 </script>

@@ -60,6 +60,12 @@ export const constantRouterMap = [
       component: () => import('@/views/form/index'),
       meta: { title: 'Form', icon: 'form' },
     }, {
+      path: 'test',
+      name: 'Test',
+      component: () => import('@/views/form/test'),
+      meta: { title: 'Form', icon: 'form' },
+      hidden: true,
+    }, {
       path: 'error',
       component: () => import('@/components/layout/SubAppMain'),
       redirect: '/example/error/error401',
@@ -86,30 +92,21 @@ export const menuConfig = [
     name: 'Dashboard',
     children: [{
       name: 'Dashboard',
-      meta: { title: 'Dashboard', icon: 'dashboard' },
     }],
   }, {
     name: 'Example',
-    meta: { title: 'Example', icon: 'demo' },
     children: [{
       name: 'Chart',
-      meta: { title: 'Chart', icon: 'chart' },
     }, {
       name: 'Table',
-      meta: { title: 'Table', icon: 'table' },
-
     }, {
       name: 'Form',
-      meta: { title: 'Form', icon: 'form' },
     }, {
       name: 'Error',
-      meta: { title: 'Error', icon: 'error' },
       children: [{
         name: '401',
-        meta: { title: '401', icon: 'error401' },
       }, {
         name: '404',
-        meta: { title: '404', icon: 'error404' },
       }],
     }],
   },
