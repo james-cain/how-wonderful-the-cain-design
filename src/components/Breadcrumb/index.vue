@@ -13,9 +13,9 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  created() {
-    this.getBreadcrumb();
-  },
+  // created() {
+  //   this.getBreadcrumb();
+  // },
   data() {
     return {
       levelList: null,
@@ -38,6 +38,9 @@ export default {
         this.levelList = matched;
       }
     },
+  },
+  mounted() {
+    this.getBreadcrumb();
   },
 };
 </script>
