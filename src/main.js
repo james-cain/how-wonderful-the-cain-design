@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import 'babel-polyfill'; // 兼容ie9
-import { RadioButton, CheckboxButton, Dropdown, DropdownMenu, DropdownItem, Col, Tabs, TabPane, Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem } from 'element-ui';
+import { RadioButton, CheckboxButton, Dropdown, DropdownMenu, DropdownItem, Row, Col, Tabs, TabPane, Input, Menu, Submenu, MenuItem, MenuItemGroup, Select, Option, Button, Table, TableColumn, Pagination, Form, FormItem, CheckboxGroup, Checkbox, RadioGroup, Radio, MessageBox, Loading, Message, Dialog, Tree, InputNumber, Cascader, Breadcrumb, BreadcrumbItem, DatePicker, Switch } from 'element-ui';
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import '@/icons'; // icon
 import '@/mock';
 import '@/permission';
+import './styles/reset.css';
 import App from './App';
 import router from './router';
 import store from './store';
@@ -12,6 +13,7 @@ import store from './store';
 Vue.component(Dropdown.name, Dropdown);
 Vue.component(DropdownMenu.name, DropdownMenu);
 Vue.component(DropdownItem.name, DropdownItem);
+Vue.component(Row.name, Row);
 Vue.component(Col.name, Col);
 Vue.component(Input.name, Input);
 Vue.component(Button.name, Button);
@@ -42,6 +44,8 @@ Vue.component(Breadcrumb.name, Breadcrumb);
 Vue.component(BreadcrumbItem.name, BreadcrumbItem);
 Vue.component(Tabs.name, Tabs);
 Vue.component(TabPane.name, TabPane);
+Vue.component(DatePicker.name, DatePicker);
+Vue.component(Switch.name, Switch);
 Vue.use(Loading.directive);
 
 Vue.prototype.$loading = Loading.service;

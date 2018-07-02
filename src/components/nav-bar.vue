@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <div class="container">
+      <div class="container main-nav-bar">
         <img :src="`./static/${address}`" class="logo" alt="" />
         <img src="../../static/logo.svg" class="logo-name" alt="" />
         <ul class="nav-bar" v-show="showMenu">
@@ -136,16 +136,16 @@ ul {
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
 }
-.el-dropdown {
+.main-nav-bar .el-dropdown {
   position: absolute;
   top: 0;
   right: 20px;
 }
-.el-dropdown-link {
+.main-nav-bar .el-dropdown-link {
   cursor: pointer;
   color: #fff;
 }
-.el-icon-arrow-down {
+.main-nav-bar .el-icon-arrow-down {
   font-size: 12px;
 }
 .container {
