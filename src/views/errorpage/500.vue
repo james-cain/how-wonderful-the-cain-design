@@ -1,17 +1,17 @@
 <template>
-    <div class="not-permission">
+    <div class="server-error">
         <div class="exception-content">
             <img
-                src="../../assets/images/404/404.png"
+                src="../../assets/images/500/500.png"
                 class="imgException"
-                alt="页面不存在"
+                alt="prmission"
             />
             <div class="exception-desc">
                 <div class="title">
-                    404
+                    500
                 </div>
                 <p class="description">
-                    抱歉，您访问的页面不存在
+                    抱歉，服务器出错啦
                 </p>
                 <el-button type="primary" class="el-button-reset" @click="goback">返回首页</el-button>
             </div>
@@ -19,8 +19,19 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'server-error',
+    methods: {
+        goback() {
+            this.$router.push({name: 'Dashboard'});
+        },
+    },
+};
+</script>
+
 <style rel="stylesheet/less" lang="less" scoped>
-.not-permission {
+.server-error {
     height: 500px;
     position: relative;
     overflow: hidden;
@@ -61,14 +72,3 @@
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'no-found',
-    methods: {
-        goback() {
-            this.$router.push({name: 'Dashboard'});
-        },
-    },
-};
-</script>

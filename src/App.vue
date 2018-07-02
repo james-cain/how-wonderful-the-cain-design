@@ -37,7 +37,9 @@ export default {
     background-color: #ffffff;
     box-sizing: border-box;
   }
-  body {
+  html, body, #app {
     margin: 0;
+    height: 100%;
+    width: 100%;
   }
 </style>

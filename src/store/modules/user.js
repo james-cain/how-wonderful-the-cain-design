@@ -27,11 +27,8 @@ const user = {
       return new Promise((resolve, reject) => {
         api.getInfo(params).then((data) => {
           const roles = data.role;
-          roles.push('401');
-          roles.push('404');
-          roles.push('except');
-          roles.push('login');
-          commit('SETROLES', roles);
+          const defaultRoles = ['403', '404', '500', 'except', 'login'];
+          commit('SETROLES', roles.concat(defaultRoles));
           commit('SETUSERINFO', data);
           commit('SETTOKEN', 'test');
           resolve(data);

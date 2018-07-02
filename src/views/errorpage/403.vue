@@ -2,22 +2,33 @@
     <div class="not-permission">
         <div class="exception-content">
             <img
-                src="../../assets/images/404/404.png"
+                src="../../assets/images/401/no-permission.png"
                 class="imgException"
-                alt="页面不存在"
+                alt="prmission"
             />
             <div class="exception-desc">
                 <div class="title">
-                    404
+                    403
                 </div>
                 <p class="description">
-                    抱歉，您访问的页面不存在
+                    抱歉，您无权限访问该页面
                 </p>
                 <el-button type="primary" class="el-button-reset" @click="goback">返回首页</el-button>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'no-permission',
+    methods: {
+        goback() {
+            this.$router.push({name: 'Dashboard'});
+        },
+    },
+};
+</script>
 
 <style rel="stylesheet/less" lang="less" scoped>
 .not-permission {
@@ -61,14 +72,3 @@
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'no-found',
-    methods: {
-        goback() {
-            this.$router.push({name: 'Dashboard'});
-        },
-    },
-};
-</script>

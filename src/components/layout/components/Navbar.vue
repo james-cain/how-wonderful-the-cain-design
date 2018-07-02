@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<style rel="stylesheet/less" lang="less" scoped>
+<style rel="stylesheet/less" lang="less">
 .navbar {
   height: 44px;
   line-height: 44px;
@@ -66,4 +66,7 @@ export default {
     }
   }
 }
+.navbar.el-menu--horizontal {
+    border-bottom: 0px!important;
+  }
 </style>

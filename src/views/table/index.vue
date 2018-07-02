@@ -1,24 +1,110 @@
 <template>
-  <div class="nav-demo1">
-    <!-- <title-bar titleName="地址管理"></title-bar> -->
+  <div class="content-container">
     <div class="content-tool">
-      <el-input
-        placeholder="请输入关键字搜索"
-        icon="search"
-        v-model="input"
-        :on-icon-click="handleIconClick"
-        class="tool-input">
-      </el-input>
-      <el-select v-model="value" placeholder="标签" class="tool-select">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-button type="primary" class="tool-qry">查询</el-button>
-      <el-button type="warning" class="tool-clear">清空条件</el-button>
+      <div class="content-row content-row__classify">
+        <div class="content-row">
+          <span class="content-tool__title content-tool__operate-h">所有类目</span>
+          <span class="content-tool__classify-nav">
+            <span class="content-tool__classify">全部</span>
+            <span class="content-tool__classify">类目一</span>
+            <span class="content-tool__classify content-tool__classify-selected">类目二</span>
+            <span class="content-tool__classify">类目三</span>
+            <span class="content-tool__classify">类目四</span>
+            <span class="content-tool__classify">类目五</span>
+            <span class="content-tool__classify">类目六</span>
+            <span class="content-tool__classify">类目七</span>
+            <span class="content-tool__classify">类目八</span>
+            <span class="content-tool__classify">类目九</span>
+          </span>
+          <span class="content-tool__switch">展开<i class="el-icon-arrow-down"></i></span>
+        </div>
+      </div>
+      <div class="content-row content-row__tool content-row__tool-first">
+        <span class="content-tool__title fl">规则编码</span>
+        <el-select v-model="value" placeholder="请选择" class="content-tool__select fl">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <span class="content-tool__title content-tool__left-empty fl">使用状态</span>
+        <el-input
+          placeholder="请输入"
+          icon="search"
+          v-model="input"
+          :on-icon-click="handleIconClick"
+          class="content-tool__input fl">
+        </el-input>
+        <span class="content-tool__title content-tool__left-empty fl" v-if="selectShow">调用次数</span>
+        <el-input
+          placeholder="请输入"
+          icon="search"
+          v-model="input"
+          :on-icon-click="handleIconClick"
+          class="content-tool__input fl"
+          v-if="selectShow">
+        </el-input>
+        <div class="content-tool__operate content-tool__left-empty fl" v-if="!selectShow">
+          <el-button type="primary" class="content-tool__qry el-button-reset">查询</el-button>
+          <el-button class="content-tool__reset el-button-reset">重置</el-button>
+          <span class="content-tool__switch content-tool__operate-h" @click="toggleOpen">展开<i class="el-icon-arrow-down"></i></span>
+        </div>
+      </div>
+      <div class="content-row content-row__tool" v-if="selectShow">
+        <span class="content-tool__title fl">规则编码</span>
+        <el-select v-model="value" placeholder="请选择" class="content-tool__select fl">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <span class="content-tool__title content-tool__left-empty fl">标题不同展示</span>
+        <el-input
+          placeholder="请输入"
+          icon="search"
+          v-model="input"
+          :on-icon-click="handleIconClick"
+          class="content-tool__input fl">
+        </el-input>
+        <span class="content-tool__title content-tool__left-empty fl">调用次数</span>
+        <el-select v-model="value" placeholder="请选择" class="content-tool__select fl">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <div class="content-row content-row__operate fr" v-if="selectShow">
+        <div class="content-tool__operate content-tool__left-empty fr">
+          <el-button type="primary" class="content-tool__qry el-button-reset">查询</el-button>
+          <el-button class="content-tool__reset el-button-reset">重置</el-button>
+          <span class="content-tool__switch content-tool__operate-h" @click="toggleClose">收起<i class="el-icon-arrow-up"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="content-operate">
+      <el-button type="primary" class="content-operate__add el-button-reset">新增</el-button>
+      <el-button class="content-operate__batch el-button-reset">批量操作</el-button>
+      <el-dropdown @command="handleCommand" class="more-dropdowm">
+        <button class="more">
+          <span class="more-span">更多操作</span>
+          <i class="el-icon-arrow-down"></i>
+        </button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="modify">修改</el-dropdown-item>
+          <el-dropdown-item command="delete">删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <div class="table-record">
+        <span>已选择<span class="table-record__selected">0</span>项,</span>
+        <span>总共<span>102</span>项</span>
+      </div>
     </div>
     <div class="table">
       <el-table
@@ -72,8 +158,9 @@
           prop="todo"
           label="操作">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-            <el-button type="text" size="small" style="color: #FB4853;">删除</el-button>
+            <span @click="handleClick(scope.row)" class="edit-operation">配置</span>
+            <span class="edit-operation">订阅警报</span>
+            <span class="edit-operation">更多<i class="el-icon-arrow-down"></i></span>
           </template>
         </el-table-column>
       </el-table>
@@ -191,11 +278,21 @@ export default {
       multipleSelection: [],
       input: '',
       value: '',
+      selectShow: false,
     };
   },
   computed: {
+    tableHeight() {
+      return this.tableData3.length > 10 ? 441 : ((this.tableData3.length + 1) * 40) + 1;
+    },
   },
   methods: {
+    toggleClose() {
+      this.selectShow = false;
+    },
+    toggleOpen() {
+      this.selectShow = true;
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach((row) => {
@@ -220,39 +317,166 @@ export default {
     handleCurrentChange() {
       // console.log(`当前页: ${val}`)
     },
+    handleCommand(command) {
+      switch (command) {
+        case 'modify':
+          break;
+        case 'delete':
+          break;
+        default:
+          break;
+      }
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
-.nav-demo1 {
-  padding: 20px;
-}
-.content-title {
-  height: 50px;
-  line-height: 50px;
-  font-family: PingFangHK-Semibold;
-  font-size: 16px;
-  color: #1F2D3D;
-  letter-spacing: 0;
-  box-shadow: 0 1px 0 0 #E0E6ED;
-}
+@import "../../styles/layout.less";
 .content-tool {
-  height: 60px;
-  line-height: 60px;
-  background: #F8F8F8;
-  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ebeef5;
+  background: #fff;
+  font-size: 14px;
+  color: #606266;
+  overflow: hidden;
+  .content-row__classify {
+    padding: 4px 0 22px 0;
+    border-bottom: 1px dashed #ebeef5;
+  }
+  .content-row__tool-first {
+    margin-top: 26px; 
+  }
+  .content-row__operate {
+    margin-bottom: 6px;
+  }
+  .content-row__tool {
+    margin-bottom: 20px; 
+  }
+  &__title {
+    margin-right: 12px;
+    height: 36px;
+    line-height: 36px;
+    width: 84px;
+  }
+  &__left-empty {
+    margin-left: 50px;
+  }
+  &__select {
+    width: 202px;
+    height: 36px;
+    input {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+  &__classify-nav {
+    span:first-child {
+      margin-left: 0px;
+    }
+  }
+  &__classify {
+    height: 28px;
+    line-height: 28px;
+    padding: 7px 10px;
+    font-size: 14px;
+    color: #333;
+    margin: 0 11px;
+    cursor: pointer;
+    &-selected {
+      border-radius: 4px;
+      color: #fff;
+      background-color: #20a0ff;
+    }
+  }
+  &__input {
+    width: 201px;
+    height: 36px;
+    input {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+  &__operate {
+    float: left;
+  }
+  &__qry {
+    width: 80px;
+  }
+  &__reset {
+    width: 80px;
+    margin-left: 10px;
+  }
+  &__switch {
+    margin-left: 15px;
+    color: #20a0ff;
+    cursor: pointer;
+    i {
+      margin-left: 7px;
+    }
+  }
+  &__operate-h {
+    height: 36px;
+  }
 }
-.tool-input {
-  margin-left: 20px;
-  width: 400px !important;
+
+.content-operate {
+  padding: 20px 0 17px;
+  overflow: hidden;
+  &__add {
+    width: 80px;
+    float: left;
+  }
+  &__batch {
+    float: left;
+  }
+  .more {
+    float: left;
+    width: 100px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    padding: 0;
+    cursor: pointer;
+    color: #606266;
+    font-size: 14px;
+    margin-left: 10px;
+    .more-span {
+      margin: 7px 0;
+    }
+    i {
+      margin-left: 3px;
+      color: #c9c9c9;
+    }
+  }
+  .table-record {
+    float: right;
+    font-size: 14px;
+    color: #606266;
+    height: 36px;
+    line-height: 36px;
+    &__selected {
+      color: #20A0FF;
+    }
+  }
 }
-.tool-select {
-  width: 150px;
-  margin-left: 20px !important;
-}
-.tool-qry, .tool-clear {
-  margin-left: 20px !important;
+.edit-operation {
+  color: #20A0FF;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 1px solid #EBEEF5;
+  cursor: pointer;
+  &:first-child {
+    padding-left: 0px;
+    padding-right: 10px;
+    border-left: 0px solid #EBEEF5;
+  }
+  &:last-child {
+    padding-left: 10px;
+    padding-right: 0px;
+  }
 }
 .tag-home, .tag-comp {
   width: 48px;

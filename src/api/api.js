@@ -41,6 +41,27 @@ class API extends Server {
       throw err;
     }
   }
+
+  // 文件上传
+  async upload(formData) {
+    try {
+      const result = await this.axios('post', '/cloudfs/api/fs/upload', formData);
+      if (result.state === 'SUCCESS') {
+        return result;
+      }
+      const err = {
+        tip: '文件上传失败',
+        response: result,
+        data: {
+          formData,
+        },
+        url: '/cloudfs/api/fs/upload',
+      };
+      throw err;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default new API();

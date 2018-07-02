@@ -1,0 +1,15 @@
+.el-input__inner {
+    height: 36px!important;
+}
+
+.el-button-reset {
+    padding: 10px 20px !important;
+}
+
+.el-checkbox {
+    font-weight: normal!important;
+}
+
+.login-account .el-checkbox {
+    color: #5e6d82!important;
+}
