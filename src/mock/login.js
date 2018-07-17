@@ -2,7 +2,7 @@ import { param2Obj } from '@/utils';
 
 const userMap = [{
   id: 'admin',
-  role: ['Dashboard', 'Table', 'Form', 'SubTable', 'Chart', 'MultiForm', 'Desc', 'SuccessMsg', 'FailMsg', 'FormSuccessMsg', 'FormFailMsg', 'Test'],
+  role: ['Dashboard', 'Table', 'Form', 'SubTable', 'Chart', 'MultiForm', 'Desc', 'SuccessMsg', 'FailMsg', 'FormSuccessMsg', 'FormFailMsg', 'Test', 'Menu', 'Edit'],
   // avatar: '',
   name: 'admin',
 }, {

@@ -54,17 +54,28 @@ export const constantRouterMap = [
       path: 'chart',
       name: 'Chart',
       component: () => import('@/views/charts/index'),
-      meta: { title: 'Chart' },
+      meta: { title: 'Chart', icon: 'chart' },
+    }, {
+      path: 'menu',
+      name: 'Menu',
+      component: () => import('@/views/menu/index'),
+      meta: { title: 'Menu' },
+    }, {
+      path: 'edit',
+      name: 'Edit',
+      component: () => import('@/views/menu/edit'),
+      meta: { title: 'Edit' },
+      hidden: true,
     }, {
       path: 'table',
       name: 'Table',
       component: () => import('@/views/table/index'),
-      meta: { title: 'Table' },
+      meta: { title: 'Table', icon: 'table' },
     }, {
       path: 'form',
       name: 'Form',
       component: () => import('@/views/form/index'),
-      meta: { title: 'Form' },
+      meta: { title: 'Form', icon: 'form' },
     }, {
       path: 'formSuccessMsg',
       name: 'FormSuccessMsg',
@@ -92,7 +103,7 @@ export const constantRouterMap = [
       component: () => import('@/components/layout/SubAppMain'),
       redirect: '/example/error/error401',
       name: 'Error',
-      meta: { title: 'Error' },
+      meta: { title: 'Error', icon: 'error' },
       children: [{
         path: 'error403',
         name: '403',
@@ -141,6 +152,10 @@ export const menuConfig = [
     name: 'Example',
     children: [{
       name: 'Chart',
+    }, {
+      name: 'Menu',
+    }, {
+      name: 'Edit',
     }, {
       name: 'Table',
     }, {

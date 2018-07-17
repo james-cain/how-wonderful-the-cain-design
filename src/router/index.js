@@ -56,6 +56,17 @@ export const constantRouterMap = [
       component: () => import('@/views/charts/index'),
       meta: { title: 'Chart', icon: 'chart' },
     }, {
+      path: 'menu',
+      name: 'Menu',
+      component: () => import('@/views/menu/index'),
+      meta: { title: 'Menu' },
+    }, {
+      path: 'edit',
+      name: 'Edit',
+      component: () => import('@/views/menu/edit'),
+      meta: { title: 'Edit' },
+      hidden: true,
+    }, {
       path: 'table',
       name: 'Table',
       component: () => import('@/views/table/index'),
@@ -141,6 +152,10 @@ export const menuConfig = [
     name: 'Example',
     children: [{
       name: 'Chart',
+    }, {
+      name: 'Menu',
+    }, {
+      name: 'Edit',
     }, {
       name: 'Table',
     }, {
