@@ -58,58 +58,57 @@
     </div>
     <div class="content-container table-container">
         <div class="table-name">退货商品</div>
-            <div class="table">
-                <el-table
-                    ref="multipleTable"
-                    :data="tableData3"
-                    border
-                    show-summary
-                    tooltip-effect="dark"
-                    :default-sort = "{prop: 'count', order: 'descending'}"
-                    style="width: 100%; font-size: 13px;">
-                    <el-table-column
-                    prop="rule"
-                    label="规则编码"
-                    width="200">
-                        <template slot-scope="scope">
-                        <div v-if="!scope.row.edit">{{ scope.row.rule }}</div>
-                        <el-input v-model="scope.row.rule" placeholder="请输入" style="width: 179px;" v-if="scope.row.edit"></el-input>
-                        </template>
-                    </el-table-column>
-                    <el-table-column
-                    prop="desc"
-                    label="描述"
-                    width="300">
+        <div class="table">
+            <el-table
+                ref="multipleTable"
+                :data="tableData3"
+                border
+                show-summary
+                tooltip-effect="dark"
+                :default-sort = "{prop: 'count', order: 'descending'}"
+                style="width: 100%; font-size: 13px;">
+                <el-table-column
+                prop="rule"
+                label="规则编码"
+                width="200">
                     <template slot-scope="scope">
-                        <div v-if="!scope.row.edit">{{ scope.row.desc }}</div>
-                        <el-input v-model="scope.row.desc" placeholder="请输入" style="width: 279px;" v-if="scope.row.edit"></el-input>
+                    <div v-if="!scope.row.edit">{{ scope.row.rule }}</div>
+                    <el-input v-model="scope.row.rule" placeholder="请输入" style="width: 179px;" v-if="scope.row.edit"></el-input>
                     </template>
-                    </el-table-column>
-                    <el-table-column
-                    prop="count"
-                    label="调用服务次数"
-                    width="160">
-                    <template slot-scope="scope">
-                        <div v-if="!scope.row.edit">{{ scope.row.count }}</div>
-                        <el-input v-model="scope.row.count" placeholder="请输入" style="width: 139px;" v-if="scope.row.edit"></el-input>
-                    </template>
-                    </el-table-column>
-                    <el-table-column
-                    prop="updateTime"
-                    label="更新时间"
-                    width="190"
-                    sortable>
-                    <template slot-scope="scope">
-                        <div v-if="!scope.row.edit">{{ scope.row.updateTime }}</div>
-                        <el-date-picker v-model="scope.row.updateTime" type="date" placeholder="选择日期" style="width: 169px;" v-if="scope.row.edit"></el-date-picker>
-                    </template>
-                    </el-table-column>
-                    <el-table-column
-                    prop="sum"
-                    label="金额">
-                    </el-table-column>
-                </el-table>
-            </div>
+                </el-table-column>
+                <el-table-column
+                prop="desc"
+                label="描述"
+                width="300">
+                <template slot-scope="scope">
+                    <div v-if="!scope.row.edit">{{ scope.row.desc }}</div>
+                    <el-input v-model="scope.row.desc" placeholder="请输入" style="width: 279px;" v-if="scope.row.edit"></el-input>
+                </template>
+                </el-table-column>
+                <el-table-column
+                prop="count"
+                label="调用服务次数"
+                width="160">
+                <template slot-scope="scope">
+                    <div v-if="!scope.row.edit">{{ scope.row.count }}</div>
+                    <el-input v-model="scope.row.count" placeholder="请输入" style="width: 139px;" v-if="scope.row.edit"></el-input>
+                </template>
+                </el-table-column>
+                <el-table-column
+                prop="updateTime"
+                label="更新时间"
+                width="190"
+                sortable>
+                <template slot-scope="scope">
+                    <div v-if="!scope.row.edit">{{ scope.row.updateTime }}</div>
+                    <el-date-picker v-model="scope.row.updateTime" type="date" placeholder="选择日期" style="width: 169px;" v-if="scope.row.edit"></el-date-picker>
+                </template>
+                </el-table-column>
+                <el-table-column
+                prop="sum"
+                label="金额">
+                </el-table-column>
+            </el-table>
         </div>
     </div>
 </div>

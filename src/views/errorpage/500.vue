@@ -21,12 +21,12 @@
 
 <script>
 export default {
-    name: 'server-error',
-    methods: {
-        goback() {
-            this.$router.push({name: 'Dashboard'});
-        },
+  name: 'server-error',
+  methods: {
+    goback() {
+      this.$router.push({ name: 'Dashboard' });
     },
+  },
 };
 </script>
 

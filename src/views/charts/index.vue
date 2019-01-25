@@ -997,7 +997,7 @@ export default {
       this.chart10Option = Object.assign({}, this.option, tmpOption);
     },
     getChart11Option() {
-      const xData = (function () {
+      const xData = (function getXData() {
         const data = [];
         for (let i = 1; i < 13; i += 1) {
           data.push(`${i}月`);

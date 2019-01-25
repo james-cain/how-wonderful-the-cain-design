@@ -53,7 +53,7 @@
             <span class="form-send__desc" v-if="loading"><i class="el-icon-loading"></i>文件上传中...</span>
           </div>
           <div class="upload-success__list">
-            <div class="upload-success__item" v-for="(file, index) in fileList">
+            <div class="upload-success__item" v-for="(file, index) in fileList" :key="`file${index}`">
               <img class="upload-success__item-img fl" :src="'../../../static/' + fileImg[file.type]" alt=""/>
               <span class="upload-success__item-name">{{file.name}}</span>
               <span class="upload-success__item-size">{{file.size}}</span>
@@ -118,11 +118,11 @@ export default {
       },
       fileList: [],
       fileImg: {
-        'xls': 'file_excel.png',
-        'xlsx': 'file_excel.png',
-        'doc': 'file_word.png',
-        'docx': 'file_word.png',
-        'pdf': 'file_pdf.png',
+        xls: 'file_excel.png',
+        xlsx: 'file_excel.png',
+        doc: 'file_word.png',
+        docx: 'file_word.png',
+        pdf: 'file_pdf.png',
       },
       loading: false,
     };
@@ -140,7 +140,7 @@ export default {
     },
     submit() {
       // this.msgShow = true;
-      this.$router.push({name: 'FormSuccessMsg'});
+      this.$router.push({ name: 'FormSuccessMsg' });
     },
     deleteSelectFile(index) {
       this.fileList.splice(index, 1);
@@ -180,7 +180,8 @@ export default {
           }
         }
         this.loading = true;
-        api.upload({params}).then((result) =>  {
+        api.upload({ params }).then((result) => {
+          console.log(result);
           this.$message({
             type: 'success',
             message: '文件上传成功!',
@@ -191,7 +192,7 @@ export default {
             type: ext,
           });
           this.loading = false;
-        }).catch((err) => {
+        }).catch(() => {
           this.$message({
             type: 'error',
             message: '文件上传异常!',
@@ -200,14 +201,14 @@ export default {
         });
       } else {
         // 兼容ie9
-        let iframe = document.createElement('iframe');
+        const iframe = document.createElement('iframe');
         iframe.width = 0;
         iframe.height = 0;
         iframe.name = 'upload-iframe';
         iframe.id = 'upload-iframe';
         iframe.setAttribute('style', 'width: 0; height: 0; border: none;');
         this.$refs.selectFile.parentNode.appendChild(iframe);
-        let form = document.createElement('form');
+        const form = document.createElement('form');
         form.setAttribute('method', 'POST');
         form.setAttribute('action', '/cloudfs/api/fs/upload');
         form.setAttribute('enctype', 'multipart/form-data');
@@ -234,7 +235,7 @@ export default {
               message: '文件上传异常!',
             });
           }
-        }
+        };
         form.submit();
       }
     },

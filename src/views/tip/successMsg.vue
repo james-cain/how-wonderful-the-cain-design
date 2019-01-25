@@ -18,12 +18,12 @@
 
 <script>
 export default {
-    name: 'success-msg',
-    methods: {
-        goback() {
-            this.$router.go(-1);
-        },
+  name: 'success-msg',
+  methods: {
+    goback() {
+      this.$router.go(-1);
     },
+  },
 };
 </script>
 

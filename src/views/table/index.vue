@@ -345,13 +345,13 @@ export default {
     border-bottom: 1px dashed #ebeef5;
   }
   .content-row__tool-first {
-    margin-top: 26px; 
+    margin-top: 26px;
   }
   .content-row__operate {
     margin-bottom: 6px;
   }
   .content-row__tool {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   &__title {
     margin-right: 12px;

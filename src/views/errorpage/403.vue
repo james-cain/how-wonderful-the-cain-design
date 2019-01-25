@@ -21,12 +21,12 @@
 
 <script>
 export default {
-    name: 'no-permission',
-    methods: {
-        goback() {
-            this.$router.push({name: 'Dashboard'});
-        },
+  name: 'no-permission',
+  methods: {
+    goback() {
+      this.$router.push({ name: 'Dashboard' });
     },
+  },
 };
 </script>
 

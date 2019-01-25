@@ -43,7 +43,6 @@
 
 <script>
 import titleBar from '@/components/title-bar';
-import api from '@/api/api';
 
 export default {
   name: 'menu-edit',
@@ -156,13 +155,13 @@ export default {
     getMenuTreeAllNodesCount(tree) {
       this.allCount += tree.filter(treeNode => !treeNode.children).length;
       const childTree = tree.filter(treeNode => treeNode.children);
-      childTree.forEach((treeChild) => this.getMenuTreeAllNodesCount(treeChild.children));
-    }
+      childTree.forEach(treeChild => this.getMenuTreeAllNodesCount(treeChild.children));
+    },
   },
   mounted() {
     this.selectedCount = this.form.selectedRole.length;
     this.getMenuTreeAllNodesCount(this.roleTree);
-  }
+  },
 };
 </script>
 

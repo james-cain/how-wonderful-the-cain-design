@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     addRole() {
-      this.$router.push({name: 'Edit'});
+      this.$router.push({ name: 'Edit' });
     },
     handleClick() {
 
@@ -130,13 +130,13 @@ export default {
     border-bottom: 1px dashed #ebeef5;
   }
   .content-row--tool-first {
-    margin-top: 26px; 
+    margin-top: 26px;
   }
   .content-row--operate {
     margin-bottom: 6px;
   }
   .content-row--tool {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   &--title {
     margin-right: 12px;

@@ -64,11 +64,11 @@
 
 <script>
 export default {
-    name: 'no-found',
-    methods: {
-        goback() {
-            this.$router.push({name: 'Dashboard'});
-        },
+  name: 'no-found',
+  methods: {
+    goback() {
+      this.$router.push({ name: 'Dashboard' });
     },
+  },
 };
 </script>
