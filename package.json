@@ -12,6 +12,8 @@
     "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
+    "@sentry/browser": "^5.1.2",
+    "@sentry/integrations": "^5.1.2",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.0.4",

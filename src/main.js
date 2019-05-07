@@ -5,6 +5,8 @@ import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import '@/icons'; // icon
 import '@/mock';
 import '@/permission';
+import * as Sentry from '@sentry/browser';
+import * as Integrations from '@sentry/integrations';
 import './styles/reset.css';
 import App from './App';
 import router from './router';
@@ -56,6 +58,17 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
+
+Sentry.init({
+  dsn: 'http://728a1fb96fe34b4da6a646eab4361c6c@localhost:9000/3',
+  releases: 'pro@1.0.1',
+  integrations: [
+    new Integrations.Vue({
+      Vue,
+      attachProps: true,
+    }),
+  ],
+});
 
 /* eslint-disable no-new */
 new Vue({
